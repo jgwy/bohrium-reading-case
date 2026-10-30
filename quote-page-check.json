@@ -1,0 +1,111 @@
+{
+  "source_pdf": "materials/Hafemeister_Satija_2019_sctransform.pdf",
+  "pdf_pages": 15,
+  "method": "Text extracted with pypdf and Poppler; quoted-span matching after NFKC, whitespace removal and line-hyphen joining. PDF pages 5 and 11 were also visually inspected. These are 13 selected quotation spans, not a semantic-accuracy percentage.",
+  "spans": [
+    {
+      "ax_node": 129,
+      "claimed_pdf_page": 1,
+      "quote": "Our approach can be applied to any UMI-based scRNA-seq dataset",
+      "matched_pdf_pages": [
+        1
+      ]
+    },
+    {
+      "ax_node": 129,
+      "claimed_pdf_page": 8,
+      "quote": "our procedure can apply widely to any UMI-based scRNA-seq experiment",
+      "matched_pdf_pages": [
+        8
+      ]
+    },
+    {
+      "ax_node": 129,
+      "claimed_pdf_page": 11,
+      "quote": "We explicitly model the UMI counts for a given gene using a generalized linear model",
+      "matched_pdf_pages": [
+        11
+      ]
+    },
+    {
+      "ax_node": 129,
+      "claimed_pdf_page": 10,
+      "quote": "normalization and variance stabilization of single-cell UMI datasets",
+      "matched_pdf_pages": [
+        10
+      ]
+    },
+    {
+      "ax_node": 130,
+      "claimed_pdf_page": 2,
+      "quote": "five UMI datasets from diverse tissues, generated with both plate- and droplet-based protocols",
+      "matched_pdf_pages": [
+        2
+      ]
+    },
+    {
+      "ax_node": 130,
+      "claimed_pdf_page": 3,
+      "quote": "SCnorm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data",
+      "matched_pdf_pages": [
+        3
+      ]
+    },
+    {
+      "ax_node": 135,
+      "claimed_pdf_page": 14,
+      "quote": "33k PBMCs from a Healthy Donor, v1 Chemistry",
+      "matched_pdf_pages": [
+        14
+      ]
+    },
+    {
+      "ax_node": 135,
+      "claimed_pdf_page": 10,
+      "quote": "we make an implicit assumption that the majority of genes in the dataset do not exhibit significant biological variation",
+      "matched_pdf_pages": [
+        10
+      ]
+    },
+    {
+      "ax_node": 140,
+      "claimed_pdf_page": 5,
+      "quote": "We utilize the Pearson residuals (response residuals divided by the expected standard deviation), effectively representing a variance-stabilizing transformation (VST), where both lowly and highly expressed genes are transformed onto a common scale",
+      "matched_pdf_pages": [
+        5
+      ]
+    },
+    {
+      "ax_node": 140,
+      "claimed_pdf_page": 6,
+      "quote": "effectively standardized expression values",
+      "matched_pdf_pages": [
+        6
+      ]
+    },
+    {
+      "ax_node": 140,
+      "claimed_pdf_page": 7,
+      "quote": "peaks at 1",
+      "matched_pdf_pages": [
+        7
+      ]
+    },
+    {
+      "ax_node": 140,
+      "claimed_pdf_page": 5,
+      "quote": "Pearson residuals are independent of sequencing depth and can be used for variable gene selection, dimensional reduction, clustering, visualization, and differential expression",
+      "matched_pdf_pages": [
+        5
+      ]
+    },
+    {
+      "ax_node": 161,
+      "claimed_pdf_page": 13,
+      "quote": "We centered and scaled all 16K genes",
+      "matched_pdf_pages": [
+        13
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# Quote matching uses Python 3.10+ standard library and Poppler pdftotext on PATH.
+# Recorded Poppler version: 26.08.0.
+# Independent PDF extraction and text-budget accounting used:
+pypdf==6.10.0

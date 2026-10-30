@@ -1,0 +1,170 @@
+Window: "玻尔·科学空间", App: 玻尔·科学空间.
+0 standard window 玻尔·科学空间, Secondary Actions: Raise
+	1 unknown
+		2 scroll area
+			3 HTML content Description: 玻尔·科学空间, URL: tauri://localhost
+				4 container
+					5 button 调整工作台面板宽度
+					6 container PDF 路径
+						7 text Hafemeister_Satija_2019_sctransform.pdf
+					8 button 退出
+					9 pop up button 选择本地打开方式
+					10 button 复制路径
+					11 pop up button 更多操作
+					12 container
+						13 splitter 调整 PDF 和右侧内容宽度, Value: 34
+						14 button Source-grounded sctransform reading check on biopsies · 重命名
+						15 pop up button 会话操作
+						16 button 收起对话
+						17 pop up button 分享
+						18 text Use only this PDF for a source-grounded reading check. Constructed scenario: I have six tumour biopsies measured with 10x UMI counts, plus a separate Smart-seq2 TPM matrix. Does the paper support applying sctransform to both inputs? Does “six biopsies” establish six independent patients? Can Pearson residuals be interpreted as comparable expression levels across genes? For each answer, distinguish what the paper states, what follows from the scenario, and what remains unknown. Give the original page/section and one short exact quotation where possible. Do not run data analysis, install software, launch compute, or read unrelated local files.
+						19 text 02:24 AM
+						20 button 复制
+						21 container
+							22 button 已处理（用时 1m 6s）
+							23 text I've read only the provided parsed PDF (197 blocks, pages 1–14). Below are the three grounded answers. I quote the paper's exact wording and mark where each claim comes from.
+							24 heading Value: 2, 1. Does the paper support applying sctransform to both inputs (10x UMI counts and a Smart-seq2 TPM matrix)?
+								25 text 1. Does the paper support applying sctransform to both inputs (10x UMI counts and a Smart-seq2 TPM matrix)?
+							26 text What the paper states. The method is explicitly scoped to UMI count data, not to any continuous or read-level matrix. The Abstract says, "Our approach can be applied to any UMI-based scRNA-seq dataset" (p. 1, Abstract). The Results restate the same boundary: "our procedure can apply widely to any UMI-based scRNA-seq experiment" (p. 8, Results). The model itself is built on integer molecule counts with a negative-binomial GLM: "We explicitly model the UMI counts for a given gene using a generalized linear model" (p. 11, Methods), using per-cell sequencing depth (sum of molecules) as the covariate. The Discussion likewise frames it as "normalization and variance stabilization of single-cell UMI datasets" (p. 10, Discussion).
+							27 text The paper's five validation datasets are described as "five UMI datasets from diverse tissues, generated with both plate- and droplet-based protocols" (p. 2, Results) — so "plate-based" here still means plate-based UMI protocols, not full-length non-UMI libraries. The words "Smart-seq2" and "TPM" never appear anywhere in the paper. The only reference to non-UMI data is about a different tool, not sctransform: "SCnorm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data" (p. 3, Results).
+							28 text What follows from the scenario. A 10x UMI count matrix is UMI-based, so it falls within the paper's stated scope. A Smart-seq2 TPM matrix is not: TPM is a continuous, length-normalized value, not integer UMI counts, and Smart-seq2 is a full-length (non-UMI) protocol. The negative-binomial GLM in the Methods assumes count observations and a per-cell total-molecule depth covariate, which a TPM matrix does not provide.
+							29 text What remains unknown. The paper is silent on whether TPM (or raw Smart-seq2 read counts) could be coerced into the model and still be valid; there is no empirical demonstration for full-length/non-UMI data. So the paper supports sctransform for the 10x UMI input, but it does not support applying it to the Smart-seq2 TPM input.
+							30 heading 2. Does "six biopsies" establish six independent patients?, Value: 2
+								31 text 2. Does "six biopsies" establish six independent patients?
+							32 text What the paper states. Nothing about biopsies, patients, or replicate design — those terms do not occur. The paper's main dataset is from a single individual: "33k PBMCs from a Healthy Donor, v1 Chemistry" (p. 14, Availability of data and materials). Its unit of analysis throughout is cells and genes, not specimens or subjects. The only remotely relevant statement is an assumption about heterogeneity: "we make an implicit assumption that the majority of genes in the dataset do not exhibit significant biological variation … may be overly simplistic when performing scRNA-seq on a highly heterogeneous sample" (p. 10, Discussion).
+							33 text What follows from the scenario. "Six biopsies" means six physical specimens. That alone does not establish six independent patients: six biopsies could come from one patient, one each from six patients, or some other combination. The count of specimens is not the same as the count of independent biological replicates.
+							34 text What remains unknown. The biopsy-to-patient mapping and whether the specimens are biologically independent. The paper provides no criterion for this and makes no claim that its conclusions transfer to a multi-patient or multi-biopsy design; with six specimens and no stated independence structure, the patient-level sample size cannot be determined from the scenario.
+							35 heading 3. Can Pearson residuals be interpreted as comparable expression levels across genes?, Value: 2
+								36 text 3. Can Pearson residuals be interpreted as comparable expression levels across genes?
+							37 text What the paper states. Yes, in the specific sense of a variance-stabilized, standardized scale — not as absolute abundance. The Results say: "We utilize the Pearson residuals (response residuals divided by the expected standard deviation), effectively representing a variance-stabilizing transformation (VST), where both lowly and highly expressed genes are transformed onto a common scale" (p. 5, Results). They are described as "effectively standardized expression values" (p. 6, Results), and the figure caption states that non-variable genes have residual variance "peaks at 1" (p. 7, Fig. 4). They are also stated to be usable downstream: "Pearson residuals are independent of sequencing depth and can be used for variable gene selection, dimensional reduction, clustering, visualization, and differential expression" (p. 5, Results).
+							38 container
+								39 text Crucially, the residual is a gene-specific standardized deviation,
+								40 container
+									41 text z
+									42 container
+										43 text i j
+									44 text = (
+									45 text x
+									46 container
+										47 text i j
+									48 text −
+									49 text μ
+									50 container
+										51 text i j
+									52 text ) /
+									53 text σ
+									54 container
+										55 text i j
+								56 text (p. 11, Methods). So "comparable across genes" means "how many gene-specific standard deviations above or below its expected value," not "same number of transcripts." The paper claims unit variance for the majority of (non-variable) genes and treats variance greater than 1 as biological signal.
+							57 text What follows from the scenario. "Comparable expression levels across genes" is supported only if read as "standardized/relative expression on a common scale." It is not supported as "absolute expression magnitudes in the same units across genes"; the paper does not claim residuals recover absolute transcript abundance.
+							58 text What remains unknown. Whether residual magnitudes can be treated as directly comparable across genes in an absolute sense is not addressed. Notably, for DE the paper uses residuals directly, but for PCA it re-standardizes: "We centered and scaled all 16K genes" before PCA (p. 13, Methods, Dimensionality reduction), so the paper itself applies an additional per-gene scaling for at least one downstream use.
+						59 button 复制
+						60 toggle button 点赞, Value: off
+						61 toggle button 点踩, Value: off
+						62 text 02:25 AM
+						63 text Please recheck two scope statements in your answer against this PDF. Page 5 discusses a “technical replicate”; clarify that this is different from independent patients, rather than saying nothing about replicates occurs. Page 2 also discusses read-level models, so clarify whether SCnorm is really the only relevant discussion of non-UMI/read-level data. Keep the three main conclusions only where supported, give exact page/section evidence, and explicitly identify any wording you revise. Do not use outside sources or run data analysis.
+						64 text 02:47 AM
+						65 button 复制
+						66 button 编辑消息
+						67 container
+							68 button 已处理（用时 33s）
+							69 text I rechecked both passages against the PDF. Both points are valid, and I've made two corrections to my earlier wording. Here are the three conclusions with the corrected evidence.
+							70 heading Corrections to my earlier wording, Value: 2
+								71 text Corrections to my earlier wording
+							72 text Revision 1 (Question 1). I previously wrote: "The only reference to non-UMI data is about a different tool … SCnorm." That was too narrow. I revise it to: SCnorm is one of several non-UMI/read-level mentions, not the only one. The paper also discusses (a) historical read-level single-cell strategies on p. 2 and (b) bulk read-count methods (DESeq/edgeR) on p. 11. None of these is a claim that sctransform applies to read-level or TPM data.
+							73 text Revision 2 (Question 2). I previously wrote: "Nothing about biopsies, patients, or replicate design — those terms do not occur." That was imprecise. I revise it to: the words "biopsy" and "patient" do not occur, but the paper does use the word "replicate" once, in the specific sense of a technical replicate (p. 5). I now distinguish that concept from independent patients.
+							74 heading 1. Does the paper support applying sctransform to both inputs?, Value: 2
+								75 text 1. Does the paper support applying sctransform to both inputs?
+							76 text Conclusion (unchanged, supported): The paper supports sctransform for the 10x UMI input, but not for the Smart-seq2 TPM input.
+							77 text Evidence. The method is scoped to UMI counts: "Our approach can be applied to any UMI-based scRNA-seq dataset" (p. 1, Abstract); "our procedure can apply widely to any UMI-based scRNA-seq experiment" (p. 8, Results); "We explicitly model the UMI counts for a given gene using a generalized linear model" (p. 11, Methods). "Smart-seq2" and "TPM" never appear in the paper.
+							78 text Revised scope note. Non-UMI/read-level data is discussed in three places, all referring to other methods or historical context, never to sctransform's own applicability:
+							79 content list
+								80 container p. 2, Introduction: "initial strategies focused on read-level (instead of UMI-level) data and modeled the measurement of each cell as a mixture of two components" — a description of earlier approaches, contrasted with the UMI-based NB strategies the paper builds on.
+									81 list marker •
+									82 text p. 2, Introduction: "initial strategies focused on read-level (instead of UMI-level) data and modeled the measurement of each cell as a mixture of two components" — a description of earlier approaches, contrasted with the UMI-based NB strategies the paper builds on.
+								83 container p. 3, Results: "the authors of SCnorm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data" — about SCnorm, not sctransform.
+									84 list marker •
+									85 text p. 3, Results: "the authors of SCnorm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data" — about SCnorm, not sctransform.
+								86 container p. 11, Methods: "DESeq [23] uses the negative binomial distribution for read count data" — bulk RNA-seq methods cited as inspiration.
+									87 list marker •
+									88 text p. 11, Methods: "DESeq [23] uses the negative binomial distribution for read count data" — bulk RNA-seq methods cited as inspiration.
+							89 text So the paper contains more than one read-level/non-UMI discussion, but none extends sctransform's own scope beyond UMI counts.
+							90 text What remains unknown: whether TPM or raw Smart-seq2 read counts could validly be coerced into the model; the paper does not address this.
+							91 heading 2. Does "six biopsies" establish six independent patients?, Value: 2
+								92 text 2. Does "six biopsies" establish six independent patients?
+							93 text Conclusion (unchanged, supported): No. The number of biopsies does not by itself establish the number of independent patients.
+							94 text Revised evidence. The words "biopsy" and "patient" do not occur in the paper. The main dataset is from a single individual: "33k PBMCs from a Healthy Donor, v1 Chemistry" (p. 14, Availability of data and materials).
+							95 text The word "replicate" appears once, on p. 5, and it means a technical replicate, not a patient: "the data from each droplet represents a technical replicate of a bulk RNA sample. There is no biological variation in this sample" (p. 5, Results). Here "technical replicate" refers to multiple droplets profiled from one bulk RNA sample — repeated measurements of the same biological material. This is a different concept from independent patients (biological replicates/subjects), and the paper does not use the term in the latter sense or discuss patient-level independence.
+							96 text What follows from the scenario: six biopsies are six specimens; they could come from one patient, six patients, or a mix, so independence is not established by the count alone.
+							97 text What remains unknown: the biopsy-to-patient mapping and whether the specimens are biologically independent. The paper offers no basis for resolving this.
+							98 heading 3. Can Pearson residuals be interpreted as comparable expression levels across genes?, Value: 2
+								99 text 3. Can Pearson residuals be interpreted as comparable expression levels across genes?
+							100 text Conclusion (unchanged, supported): Only as variance-stabilized, standardized deviations on a common scale — not as absolute expression levels.
+							101 container
+								102 text Evidence. "We utilize the Pearson residuals … effectively representing a variance-stabilizing transformation (VST), where both lowly and highly expressed genes are transformed onto a common scale" (p. 5, Results); residuals are "effectively standardized expression values" (p. 6, Results); non-variable genes have residual variance "peaks at 1" (p. 7, Fig. 4). The residual is a gene-specific standardized deviation, 
+								103 container
+									104 text z
+									105 container
+										106 text i j
+									107 text = (
+									108 text x
+									109 container
+										110 text i j
+									111 text −
+									112 text μ
+									113 container
+										114 text i j
+									115 text ) /
+									116 text σ
+									117 container
+										118 text i j
+								119 text (p. 11, Methods), i.e., "how many gene-specific SDs above/below expectation," not "same number of transcripts." For PCA the paper re-standardizes anyway: "We centered and scaled all 16K genes" (p. 13, Methods).
+							120 text No wording in this section needed revision.
+						121 button 复制
+						122 toggle button 点赞, Value: off
+						123 toggle button 点踩, Value: off
+						124 text 02:47 AM
+						125 text entry area (settable) 询问一个科学问题
+							126 text 询问一个科学问题
+						127 button 添加附件或引用
+						128 pop up button 请求批准, Help: 选择授权方式
+						129 image 上下文已使用 16%
+						130 pop up button 推理强度
+						131 toggle button 开始语音输入, Value: off
+						132 button (disabled) 发送
+						133 text 内容由 AI 生成，请仔细甄别
+					134 container Notifications alt+T
+					135 container
+						136 button 目录
+						137 text field (settable) 页码, Value: 5
+						138 text / 15
+						139 button 缩小
+						140 text 156%
+						141 pop up button 缩放比例, Value: 156%
+						142 button 放大
+						143 toggle button 标注, Value: off
+						144 button 搜索
+						145 button 引用
+						146 pop up button 下载
+						147 container PDF 阅读操作
+							148 switch (settable, boolean) 全文翻译, Value: off
+							149 toggle button 阅读助手, Value: on
+							150 toggle button 论文速览, Value: off
+							151 toggle button 图表速览, Value: off
+						152 image
+						153 image
+						154 image
+						155 image
+						156 image
+						157 image
+						158 image
+						159 image
+						160 image
+				161 pop up button 开发工具
+	162 close button
+	163 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	164 minimize button
+165 menu bar
+	166 玻尔·科学空间
+	167 Edit
+	168 Window

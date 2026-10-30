@@ -1,0 +1,157 @@
+{
+  "scope": "Every file in Release v1.0 of this repository, which is also the submitted materials.zip.",
+  "measurement": "pypdf 6.14.2 extracts the sole PDF with page markers; all other non-image files are counted as UTF-8 bytes, including this file. Images are not OCR-counted.",
+  "limit_bytes": 245760,
+  "recommended_ceiling_bytes": 204800,
+  "plain_utf8_bytes": 94299,
+  "pdf_extracted_utf8_bytes": 63908,
+  "pdf_pages": 15,
+  "text_total": 158207,
+  "file_count": 24,
+  "files": [
+    {
+      "path": "02-reading-request.jpg",
+      "kind": "Image; not OCR-counted",
+      "counted_text_bytes": 0,
+      "file_bytes": 1135094
+    },
+    {
+      "path": "03-method-page.jpg",
+      "kind": "Image; not OCR-counted",
+      "counted_text_bytes": 0,
+      "file_bytes": 1149414
+    },
+    {
+      "path": "04-followup.jpg",
+      "kind": "Image; not OCR-counted",
+      "counted_text_bytes": 0,
+      "file_bytes": 1218665
+    },
+    {
+      "path": "LICENSE",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 19127,
+      "file_bytes": 19127
+    },
+    {
+      "path": "README.md",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 9412,
+      "file_bytes": 9412
+    },
+    {
+      "path": "SOURCE.md",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 1516,
+      "file_bytes": 1516
+    },
+    {
+      "path": "TEXT_BUDGET.json",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 3978,
+      "file_bytes": 3978
+    },
+    {
+      "path": "app-answer-complete-ax.txt",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 9846,
+      "file_bytes": 9846
+    },
+    {
+      "path": "app-answer.md",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 7297,
+      "file_bytes": 7297
+    },
+    {
+      "path": "app-followup-answer.md",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 6282,
+      "file_bytes": 6282
+    },
+    {
+      "path": "app-followup-complete-ax.txt",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 17268,
+      "file_bytes": 17268
+    },
+    {
+      "path": "export-provenance.json",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 330,
+      "file_bytes": 330
+    },
+    {
+      "path": "followup-export-provenance.json",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 999,
+      "file_bytes": 999
+    },
+    {
+      "path": "followup-prompt.txt",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 544,
+      "file_bytes": 544
+    },
+    {
+      "path": "followup-quote-page-check.json",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 1372,
+      "file_bytes": 1372
+    },
+    {
+      "path": "materials/Hafemeister_Satija_2019_sctransform.pdf",
+      "kind": "PDF extracted text (pypdf)",
+      "counted_text_bytes": 63908,
+      "file_bytes": 5378176
+    },
+    {
+      "path": "prompt.txt",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 654,
+      "file_bytes": 654
+    },
+    {
+      "path": "quote-page-check.json",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 3215,
+      "file_bytes": 3215
+    },
+    {
+      "path": "reproduce_quote_pages.py",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 1978,
+      "file_bytes": 1978
+    },
+    {
+      "path": "requirements.txt",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 196,
+      "file_bytes": 196
+    },
+    {
+      "path": "revision-comparison.tsv",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 961,
+      "file_bytes": 961
+    },
+    {
+      "path": "source-answer-review.tsv",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 2783,
+      "file_bytes": 2783
+    },
+    {
+      "path": "verification.md",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 4347,
+      "file_bytes": 4347
+    },
+    {
+      "path": "提交说明.md",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 2194,
+      "file_bytes": 2194
+    }
+  ]
+}

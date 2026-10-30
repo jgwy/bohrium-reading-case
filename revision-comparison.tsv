@@ -1,0 +1,4 @@
+item	initial_wording	external_feedback	actual_revision	independent_check
+F1	Only SCnorm refers to non-UMI/read-level data.	Explicit feedback points to p.2 read-level discussion.	App retracts only-SCnorm wording; cites p.2, p.3 and p.11 DESeq.	Four selected follow-up quotation spans all match the stated pages. Related work does not establish sctransform TPM applicability.
+F2	Nothing about replicate design; those terms do not occur.	Explicit feedback supplies p.5 technical replicate.	App distinguishes technical replicates from independent patients.	Corrected distinction is supported; biopsy/patient mapping remains unknown. Lexical search result applies only to this PDF.
+F3	Standardized scale versus absolute expression.	Follow-up asks to preserve supported main conclusions.	Main residual interpretation remains unchanged.	Supported in standardized-score sense; variance peak is not exactly one for every gene or proof all excess variance is biological.

@@ -1,0 +1,40 @@
+{
+  "source_pdf": "materials/Hafemeister_Satija_2019_sctransform.pdf",
+  "method": "Poppler reading-order text; NFKC, whitespace normalization and line-hyphen joining; pages5 and11 were also visually inspected in the first independent check.",
+  "spans": [
+    {
+      "ax_node": 82,
+      "claimed_pdf_page": 2,
+      "quote": "initial strategies focused on read-level (instead of UMI-level) data and modeled the measurement of each cell as a mixture of two components",
+      "matched_pdf_pages": [
+        2
+      ]
+    },
+    {
+      "ax_node": 85,
+      "claimed_pdf_page": 3,
+      "quote": "the authors of SCnorm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data",
+      "matched_pdf_pages": [
+        3
+      ]
+    },
+    {
+      "ax_node": 88,
+      "claimed_pdf_page": 11,
+      "quote": "DESeq [23] uses the negative binomial distribution for read count data",
+      "matched_pdf_pages": [
+        11
+      ]
+    },
+    {
+      "ax_node": 95,
+      "claimed_pdf_page": 5,
+      "quote": "the data from each droplet represents a technical replicate of a bulk RNA sample. There is no biological variation in this sample",
+      "matched_pdf_pages": [
+        5
+      ]
+    }
+  ],
+  "lexical_replicate_occurrences": 1,
+  "scope": "The supplied15-page PDF only; not unavailable supplements or all related literature."
+}
