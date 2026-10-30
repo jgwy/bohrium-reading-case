@@ -1,13 +1,13 @@
 {
-  "scope": "Every file in Release v1.0 of this repository, which is also the submitted materials.zip.",
+  "scope": "Every file in local candidate directory github-v1.2; this measurement does not claim publication or submission.",
   "measurement": "pypdf 6.14.2 extracts the sole PDF with page markers; all other non-image files are counted as UTF-8 bytes, including this file. Images are not OCR-counted.",
   "limit_bytes": 245760,
   "recommended_ceiling_bytes": 204800,
-  "plain_utf8_bytes": 94299,
+  "plain_utf8_bytes": 167485,
   "pdf_extracted_utf8_bytes": 63908,
   "pdf_pages": 15,
-  "text_total": 158207,
-  "file_count": 24,
+  "text_total": 231393,
+  "file_count": 39,
   "files": [
     {
       "path": "02-reading-request.jpg",
@@ -36,8 +36,8 @@
     {
       "path": "README.md",
       "kind": "UTF-8 file bytes",
-      "counted_text_bytes": 9412,
-      "file_bytes": 9412
+      "counted_text_bytes": 20557,
+      "file_bytes": 20557
     },
     {
       "path": "SOURCE.md",
@@ -48,8 +48,14 @@
     {
       "path": "TEXT_BUDGET.json",
       "kind": "UTF-8 file bytes",
-      "counted_text_bytes": 3978,
-      "file_bytes": 3978
+      "counted_text_bytes": 6295,
+      "file_bytes": 6295
+    },
+    {
+      "path": "WORKFLOW.md",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 7144,
+      "file_bytes": 7144
     },
     {
       "path": "app-answer-complete-ax.txt",
@@ -60,8 +66,8 @@
     {
       "path": "app-answer.md",
       "kind": "UTF-8 file bytes",
-      "counted_text_bytes": 7297,
-      "file_bytes": 7297
+      "counted_text_bytes": 7298,
+      "file_bytes": 7298
     },
     {
       "path": "app-followup-answer.md",
@@ -74,6 +80,12 @@
       "kind": "UTF-8 file bytes",
       "counted_text_bytes": 17268,
       "file_bytes": 17268
+    },
+    {
+      "path": "app-inprogress-ax.txt",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 15603,
+      "file_bytes": 15603
     },
     {
       "path": "export-provenance.json",
@@ -100,6 +112,12 @@
       "file_bytes": 1372
     },
     {
+      "path": "inprogress-export-provenance.json",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 1218,
+      "file_bytes": 1218
+    },
+    {
       "path": "materials/Hafemeister_Satija_2019_sctransform.pdf",
       "kind": "PDF extracted text (pypdf)",
       "counted_text_bytes": 63908,
@@ -118,6 +136,24 @@
       "file_bytes": 3215
     },
     {
+      "path": "replay-absence-search-output.json",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 3104,
+      "file_bytes": 3104
+    },
+    {
+      "path": "replay_absence_search.py",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 3524,
+      "file_bytes": 3524
+    },
+    {
+      "path": "reproduce-quote-pages-output.json",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 5504,
+      "file_bytes": 5504
+    },
+    {
       "path": "reproduce_quote_pages.py",
       "kind": "UTF-8 file bytes",
       "counted_text_bytes": 1978,
@@ -126,8 +162,8 @@
     {
       "path": "requirements.txt",
       "kind": "UTF-8 file bytes",
-      "counted_text_bytes": 196,
-      "file_bytes": 196
+      "counted_text_bytes": 241,
+      "file_bytes": 241
     },
     {
       "path": "revision-comparison.tsv",
@@ -142,16 +178,70 @@
       "file_bytes": 2783
     },
     {
+      "path": "t1r-test/INTERFACE_EVENT.md",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 1473,
+      "file_bytes": 1473
+    },
+    {
+      "path": "t1r-test/PLAN.md",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 648,
+      "file_bytes": 648
+    },
+    {
+      "path": "t1r-test/PROVENANCE.json",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 1858,
+      "file_bytes": 1858
+    },
+    {
+      "path": "t1r-test/before-send-excerpt.txt",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 1396,
+      "file_bytes": 1396
+    },
+    {
+      "path": "t1r-test/final-answer-excerpt.txt",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 8279,
+      "file_bytes": 8279
+    },
+    {
+      "path": "t1r-test/initial-entry-excerpt.txt",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 5433,
+      "file_bytes": 5433
+    },
+    {
+      "path": "t1r-test/search-observations-excerpt.jsonl",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 3172,
+      "file_bytes": 3172
+    },
+    {
+      "path": "t1r-test/sent-prompt-single-line.txt",
+      "kind": "UTF-8 file bytes",
+      "counted_text_bytes": 908,
+      "file_bytes": 908
+    },
+    {
+      "path": "t1r-test/workspace-result.jpg",
+      "kind": "Image; not OCR-counted",
+      "counted_text_bytes": 0,
+      "file_bytes": 1126430
+    },
+    {
       "path": "verification.md",
       "kind": "UTF-8 file bytes",
-      "counted_text_bytes": 4347,
-      "file_bytes": 4347
+      "counted_text_bytes": 4346,
+      "file_bytes": 4346
     },
     {
       "path": "提交说明.md",
       "kind": "UTF-8 file bytes",
-      "counted_text_bytes": 2194,
-      "file_bytes": 2194
+      "counted_text_bytes": 2609,
+      "file_bytes": 2609
     }
   ]
 }

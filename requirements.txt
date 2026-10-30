@@ -1,4 +1,5 @@
 # Quote matching uses Python 3.10+ standard library and Poppler pdftotext on PATH.
 # Recorded Poppler version: 26.08.0.
-# Independent PDF extraction and text-budget accounting used:
-pypdf==6.10.0
+# Optional. pypdf 6.10.0 gave the historical independent extraction;
+# TEXT_BUDGET.json was measured with:
+pypdf==6.14.2

@@ -2,7 +2,7 @@
 
 This is a faithful Markdown rendering of the complete accessibility export, not native model telemetry. Source: app-answer-complete-ax.txt; export-provenance.json records capture provenance. UI wrappers and duplicate heading nodes were removed; the displayed equation was reconstructed from its AX glyph nodes as z_ij = (x_ij − μ_ij) / σ_ij. The answer wording, qualifications and errors are otherwise retained. Corrections belong to verification.md, not to this transcript.
 
-Observed UI: processed in 1m 6s; prompt timestamp 02:24 AM and answer timestamp 02:25 AM on 2026-10-30 (UTC+8). The model/version, token use and billed cost are not shown in the captured view. This is a separate App demonstration, not an A experiment arm.
+Observed UI: processed in 1m 6s; prompt timestamp 02:24 AM and answer timestamp 02:25 AM on 2026-10-30 (UTC+8). The model/version, token use and billed cost are not shown in the captured view. This is a single real App session, not a controlled comparison.
 
 ## Exact request
 

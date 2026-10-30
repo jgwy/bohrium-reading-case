@@ -1,0 +1,91 @@
+{
+  "pdf": "Hafemeister_Satija_2019_sctransform.pdf",
+  "pages": 15,
+  "scope": "Lexical replay on pdftotext output of this PDF only. The App searched its own parsed block file, which is not available; earlier collapsed App search steps did not show their patterns.",
+  "app_visible_pattern": "Smart|TPM|transcripts|biops|patient|Donor|donor|full-length|full length",
+  "app_reported_match_count": 1,
+  "replayed_case_sensitive_matches": [
+    {
+      "page": 14,
+      "match": "Donor",
+      "context": " dataset used in the main text is “33k PBMCs from a Healthy Donor, v1 Chemistry” from 10x Genomics (licensed under the Creati"
+    }
+  ],
+  "absence_claim_audit": [
+    {
+      "id": "A1",
+      "answer_wording": "The words \"Smart-seq2\" and \"TPM\" never appear anywhere in the paper.",
+      "terms": [
+        {
+          "term": "Smart-seq",
+          "in_app_visible_pattern": true,
+          "pdf_pages_with_match": [],
+          "first_context": null
+        },
+        {
+          "term": "TPM",
+          "in_app_visible_pattern": true,
+          "pdf_pages_with_match": [],
+          "first_context": null
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "answer_wording": "Nothing about biopsies, patients, or replicate design - those terms do not occur.",
+      "terms": [
+        {
+          "term": "biops",
+          "in_app_visible_pattern": true,
+          "pdf_pages_with_match": [],
+          "first_context": null
+        },
+        {
+          "term": "patient",
+          "in_app_visible_pattern": true,
+          "pdf_pages_with_match": [],
+          "first_context": null
+        },
+        {
+          "term": "replicat",
+          "in_app_visible_pattern": false,
+          "pdf_pages_with_match": [
+            5
+          ],
+          "first_context": "t,” where the data from each droplet represents a technical replicate of a bulk RNA sample. There is no biological variation in "
+        }
+      ]
+    },
+    {
+      "id": "A3",
+      "answer_wording": "The only reference to non-UMI data is about a different tool, not sctransform: SCnorm (p. 3).",
+      "terms": [
+        {
+          "term": "non-UMI",
+          "in_app_visible_pattern": false,
+          "pdf_pages_with_match": [
+            3
+          ],
+          "first_context": "orm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data. Their method utilizes quant"
+        },
+        {
+          "term": "read-level",
+          "in_app_visible_pattern": false,
+          "pdf_pages_with_match": [
+            2
+          ],
+          "first_context": "stic approaches. For example, initial strategies focused on read-level (instead of UMI-level) data and modeled the measurement of "
+        },
+        {
+          "term": "read count",
+          "in_app_visible_pattern": false,
+          "pdf_pages_with_match": [
+            11,
+            15
+          ],
+          "first_context": "ple, DESeq [23] uses the negative binomial distribution for read count data and links variance and mean by local regression. DESeq"
+        }
+      ]
+    }
+  ]
+}

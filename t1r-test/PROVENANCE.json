@@ -1,0 +1,20 @@
+{
+  "status": "One actual development probe; not randomized or matched to the original reader session.",
+  "original_sources": [
+    "before-send-ax.txt",
+    "observations.jsonl",
+    "final-ax.txt",
+    "initial-entry-observation.txt",
+    "INTERFACE_EVENT.md"
+  ],
+  "provided_evidence": "Privacy-selected AX excerpts; complete single-line input; actual safe screenshot. Originals remain preserved in the local execution record.",
+  "privacy_transform": "Removed unrelated account/sidebar/menu UI and replaced local filesystem paths with <LOCAL_PATH>. Kept selected scientific text and original node IDs. Repeated identical working-panel text is retained once at its first observed timestamp.",
+  "truncation": "The App AX export clips some long text nodes around512 characters. Nodes90,91,111,113 visibly end mid-sentence. This is not a complete untruncated answer; missing text was not reconstructed.",
+  "input": "Original prompt followed by the two verbatim T1-R sentences; only whitespace normalized to one line. The pre-send value contains the complete input.",
+  "initial_entry": "Multiline entry appeared to submit before planned Send; appended-rule delivery was not established. Preserved separately and not counted as a T1-R result.",
+  "actual_mode": "Fresh desktop task with PDF attachment; direct pdftotext extraction, not the original paper-reading assistant parsed-block route.",
+  "ui_duration": "2m10s; not an independently timed total or a causal speed comparison.",
+  "model_version_tokens_cost": "Unavailable from the captured view.",
+  "screenshot": "workspace-result.jpg is an unchanged screenshot captured after completion in the PDF workbench; no account sidebar or local path is visible.",
+  "interpretation": "Observed search terms and result pages, plus visible final wording. No stable, causal or general-performance claim."
+}
