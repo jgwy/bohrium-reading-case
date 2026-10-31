@@ -1,6 +1,6 @@
 {
   "source_pdf": "materials/Hafemeister_Satija_2019_sctransform.pdf",
-  "method": "Poppler reading-order text; NFKC, whitespace normalization and line-hyphen joining; pages5 and11 were also visually inspected in the first independent check.",
+  "method": "Poppler reading-order text; NFKC, whitespace normalization and line-hyphen joining; pages 5 and 11 were also visually inspected in the first independent check.",
   "spans": [
     {
       "ax_node": 82,
@@ -36,5 +36,5 @@
     }
   ],
   "lexical_replicate_occurrences": 1,
-  "scope": "The supplied15-page PDF only; not unavailable supplements or all related literature."
+  "scope": "The supplied 15-page PDF only; not unavailable supplements or all related literature."
 }

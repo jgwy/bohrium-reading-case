@@ -24,7 +24,7 @@ The independent check was performed within this task and then supplied as explic
 
 ## Remaining qualifications
 
-- The Fig.4 density peak near variance 1 concerns the null/low-biological-variation setting and an observed gene distribution. It does not make every variance above 1 proven biology.
+- The Fig. 4 density peak near variance 1 concerns the null/low-biological-variation setting and an observed gene distribution. It does not make every variance above 1 proven biology.
 - The p. 5 independence quotation has a later p. 9 qualification: complete biological/technical independence is not expected because cell types differ in RNA content.
 - The second answer keeps the useful standardized-versus-absolute distinction. Its “no wording needed revision” sentence is a product statement, not an independent accuracy certificate.
 - The App says it read 197 parsed blocks on pages 1–14; the complete PDF has 15 pages. The independent text search covered all 15. No supplementary full text was available.

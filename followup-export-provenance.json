@@ -8,6 +8,6 @@
   "displayed_processing_duration": "33s",
   "exact_capture_utc": null,
   "capture_time_note": "No separate exact capture timestamp was supplied with this export; UI timestamps are retained without converting them to an inferred capture time.",
-  "intervention": "Independent source check identified two wording issues; the second prompt explicitly supplied the page5 technical-replicate and page2 read-level-model corrections.",
-  "timing_limit": "Do not add the 1m6s and33s badges to claim total elapsed work, which also included reading, verification and interaction."
+  "intervention": "Independent source check identified two wording issues; the second prompt explicitly supplied the page 5 technical-replicate and page 2 read-level-model corrections.",
+  "timing_limit": "Do not add the 1m 6s and 33s badges to claim total elapsed work, which also included reading, verification and interaction."
 }

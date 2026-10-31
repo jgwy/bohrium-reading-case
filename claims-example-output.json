@@ -1,0 +1,35 @@
+{
+ "pdf": "Hafemeister_Satija_2019_sctransform.pdf",
+ "pages": 15,
+ "scope": "Lexical audit of your claims on pdftotext output of this PDF only. A claim with any hit needs reading; zero hits bound the claim to these terms and this text.",
+ "claims_with_hits": ["A2", "B3"],
+ "absence_claim_audit": [
+  {
+   "id": "A2",
+   "answer_wording": "Nothing about biopsies, patients, or replicate design — those terms do not occur.",
+   "terms": [
+    {"term": "biops", "pdf_pages_with_match": [], "first_context": null},
+    {"term": "patient", "pdf_pages_with_match": [], "first_context": null},
+    {"term": "replicat", "pdf_pages_with_match": [5], "first_context": "t,” where the data from each droplet represents a technical replicate of a bulk RNA sample. There is no biological variation in "}
+   ]
+  },
+  {
+   "id": "B3",
+   "answer_wording": "hits on pages 2, 3, 11, 15 (5 hits; these are the only non-UMI / read-level / plate-based mentions)",
+   "terms": [
+    {"term": "plate[- ]?based", "pdf_pages_with_match": [], "first_context": null},
+    {"term": "plate", "pdf_pages_with_match": [2, 8], "first_context": "five UMI datasets from diverse tissues, generated with both plate- and droplet-based protocols. We show results on all datase"},
+    {"term": "non[- ]?UMI", "pdf_pages_with_match": [3], "first_context": "orm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data. Their method utilizes quant"},
+    {"term": "read[- ]?level", "pdf_pages_with_match": [2], "first_context": "stic approaches. For example, initial strategies focused on read-level (instead of UMI-level) data and modeled the measurement of "},
+    {"term": "read count", "pdf_pages_with_match": [11, 15], "first_context": "ple, DESeq [23] uses the negative binomial distribution for read count data and links variance and mean by local regression. DESeq"}
+   ]
+  },
+  {
+   "id": "B4",
+   "answer_wording": "the paper never uses the word \"comparable\" (search above: no literal hit)",
+   "terms": [
+    {"term": "comparab", "pdf_pages_with_match": [], "first_context": null}
+   ]
+  }
+ ]
+}

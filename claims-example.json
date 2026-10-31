@@ -1,0 +1,8 @@
+[
+ {"id": "A2", "answer_wording": "Nothing about biopsies, patients, or replicate design — those terms do not occur.",
+  "terms": ["biops", "patient", "replicat"]},
+ {"id": "B3", "answer_wording": "hits on pages 2, 3, 11, 15 (5 hits; these are the only non-UMI / read-level / plate-based mentions)",
+  "terms": ["plate[- ]?based", "plate", "non[- ]?UMI", "read[- ]?level", "read count"]},
+ {"id": "B4", "answer_wording": "the paper never uses the word \"comparable\" (search above: no literal hit)",
+  "terms": ["comparab"]}
+]

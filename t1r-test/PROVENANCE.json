@@ -9,7 +9,7 @@
   ],
   "provided_evidence": "Privacy-selected AX excerpts; complete single-line input; actual safe screenshot. Originals remain preserved in the local execution record.",
   "privacy_transform": "Removed unrelated account/sidebar/menu UI and replaced local filesystem paths with <LOCAL_PATH>. Kept selected scientific text and original node IDs. Repeated identical working-panel text is retained once at its first observed timestamp.",
-  "truncation": "The App AX export clips some long text nodes around512 characters. Nodes90,91,111,113 visibly end mid-sentence. This is not a complete untruncated answer; missing text was not reconstructed.",
+  "truncation": "The App AX export clips some long text nodes around 512 characters. Nodes 90, 91, 111, 113 visibly end mid-sentence. This is not a complete untruncated answer; missing text was not reconstructed.",
   "input": "Original prompt followed by the two verbatim T1-R sentences; only whitespace normalized to one line. The pre-send value contains the complete input.",
   "initial_entry": "Multiline entry appeared to submit before planned Send; appended-rule delivery was not established. Not counted as a T1-R result. Its excerpt was shipped in v1.2 and removed in v1.3 as an interface-fault record unrelated to any conclusion; the original stays in the local execution record.",
   "actual_mode": "Fresh desktop task with PDF attachment; direct pdftotext extraction, not the original paper-reading assistant parsed-block route.",

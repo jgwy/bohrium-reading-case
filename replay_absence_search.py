@@ -2,10 +2,13 @@
 """Replay the App's visible searches and audit absence/uniqueness claims, before and after T1-R.
 
 Part 1 (round 1, original reader session): replays the one visible search pattern and audits
-the three absence/uniqueness claims of app-answer.md.
+the four scriptable absence/uniqueness claims of app-answer.md (A4 is judged by reading).
 Part 2 (T1-R probe): replays every search pattern shown in t1r-test/search-observations-excerpt.jsonl
 on `pdftotext -layout` text (the App's T1-R route extracted text "with layout"), compares the
 App's "共 N 处" count with matching lines and with matches, and audits the T1-R answer's claims.
+
+Your own paper: `--claims FILE` (format: claims-example.json) audits your claims instead of parts 1-2;
+add `--searches FILE` to also replay a working panel's search lines. Paths are taken as given.
 
 Text-location evidence only: no model call, no network, no scientific judgement.
 """
@@ -117,15 +120,59 @@ def dump(obj, indent=0):
     return pad + json.dumps(obj, ensure_ascii=False)
 
 
+def replay_counts(path, layout):
+    counts = []
+    for node, pattern, app_count in app_t1r_searches(path):
+        lines, matches, page_list = line_and_match_counts(pattern, layout)
+        counts.append({"node": node, "pattern": pattern, "app_count": app_count,
+                       "matching_lines": lines, "matches": matches, "pages": page_list})
+    return counts
+
+
+def audit_claims(claims, pages):
+    """Case-insensitive regex hits for every term of every claim (T1-R format)."""
+    audit = []
+    for claim in claims:
+        rows = []
+        for term in claim["terms"]:
+            found = hits(term, pages, re.IGNORECASE)
+            row = {"term": term, "pdf_pages_with_match": sorted({h["page"] for h in found}),
+                   "first_context": found[0]["context"] if found else None}
+            if claim.get("all_contexts"):
+                row["all_contexts"] = [f'p. {h["page"]}: {h["context"]}' for h in found]
+            rows.append(row)
+        record = {"id": claim["id"]}
+        if "node" in claim:
+            record["node"] = claim["node"]
+        record.update({"answer_wording": claim["answer_wording"], "terms": rows})
+        audit.append(record)
+    return audit
+
+
 def main():
     root = Path(__file__).resolve().parent
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pdf", type=Path,
                         default=root / "materials" / "Hafemeister_Satija_2019_sctransform.pdf")
-    parser.add_argument("--searches", type=Path,
-                        default=root / "t1r-test" / "search-observations-excerpt.jsonl")
+    parser.add_argument("--searches", type=Path, default=None,
+                        help="JSONL of panel search lines (default: the T1-R excerpt)")
+    parser.add_argument("--claims", type=Path, default=None,
+                        help="JSON list of claims {id, answer_wording, terms: [regex], all_contexts?}")
     args = parser.parse_args()
     pages = joined(raw_pages(args.pdf))
+    if args.claims:
+        claims = json.loads(args.claims.read_text(encoding="utf-8"))
+        out = {"pdf": args.pdf.name, "pages": len(pages),
+               "scope": ("Lexical audit of your claims on pdftotext output of this PDF only. A claim with any "
+                         "hit needs reading; zero hits bound the claim to these terms and this text."),
+               "claims_with_hits": [], "absence_claim_audit": audit_claims(claims, pages)}
+        out["claims_with_hits"] = [c["id"] for c in out["absence_claim_audit"]
+                                   if any(t["pdf_pages_with_match"] for t in c["terms"])]
+        if args.searches:
+            out["search_count_replay"] = replay_counts(args.searches, raw_pages(args.pdf, layout=True))
+        print(dump(out))
+        return
+    searches = args.searches or root / "t1r-test" / "search-observations-excerpt.jsonl"
 
     audit = []
     for claim in CLAIMS:
@@ -137,24 +184,8 @@ def main():
                          "first_context": found[0]["context"] if found else None})
         audit.append({"id": claim["id"], "answer_wording": claim["answer_wording"], "terms": rows})
 
-    layout = raw_pages(args.pdf, layout=True)
-    counts = []
-    for node, pattern, app_count in app_t1r_searches(args.searches):
-        lines, matches, page_list = line_and_match_counts(pattern, layout)
-        counts.append({"node": node, "pattern": pattern, "app_count": app_count,
-                       "matching_lines": lines, "matches": matches, "pages": page_list})
-    t1r_audit = []
-    for claim in T1R_CLAIMS:
-        rows = []
-        for term in claim["terms"]:
-            found = hits(term, pages, re.IGNORECASE)
-            row = {"term": term, "pdf_pages_with_match": sorted({h["page"] for h in found}),
-                   "first_context": found[0]["context"] if found else None}
-            if claim.get("all_contexts"):
-                row["all_contexts"] = [f'p. {h["page"]}: {h["context"]}' for h in found]
-            rows.append(row)
-        t1r_audit.append({"id": claim["id"], "node": claim["node"],
-                          "answer_wording": claim["answer_wording"], "terms": rows})
+    counts = replay_counts(searches, raw_pages(args.pdf, layout=True))
+    t1r_audit = audit_claims(T1R_CLAIMS, pages)
 
     print(dump({
         "pdf": args.pdf.name,
