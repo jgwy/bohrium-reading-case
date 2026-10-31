@@ -1,177 +1,31 @@
-{
-  "pdf": "Hafemeister_Satija_2019_sctransform.pdf",
-  "pages": 15,
-  "scope": "Text-location matching only; not scientific interpretation or model accuracy.",
-  "records": [
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 129,
-      "quote": "Our approach can be applied to any UMI-based scRNA-seq dataset",
-      "claimed_pdf_page": 1,
-      "newly_matched_pages": [
-        1
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 129,
-      "quote": "our procedure can apply widely to any UMI-based scRNA-seq experiment",
-      "claimed_pdf_page": 8,
-      "newly_matched_pages": [
-        8
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 129,
-      "quote": "We explicitly model the UMI counts for a given gene using a generalized linear model",
-      "claimed_pdf_page": 11,
-      "newly_matched_pages": [
-        11
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 129,
-      "quote": "normalization and variance stabilization of single-cell UMI datasets",
-      "claimed_pdf_page": 10,
-      "newly_matched_pages": [
-        10
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 130,
-      "quote": "five UMI datasets from diverse tissues, generated with both plate- and droplet-based protocols",
-      "claimed_pdf_page": 2,
-      "newly_matched_pages": [
-        2
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 130,
-      "quote": "SCnorm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data",
-      "claimed_pdf_page": 3,
-      "newly_matched_pages": [
-        3
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 135,
-      "quote": "33k PBMCs from a Healthy Donor, v1 Chemistry",
-      "claimed_pdf_page": 14,
-      "newly_matched_pages": [
-        14
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 135,
-      "quote": "we make an implicit assumption that the majority of genes in the dataset do not exhibit significant biological variation",
-      "claimed_pdf_page": 10,
-      "newly_matched_pages": [
-        10
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 140,
-      "quote": "We utilize the Pearson residuals (response residuals divided by the expected standard deviation), effectively representing a variance-stabilizing transformation (VST), where both lowly and highly expressed genes are transformed onto a common scale",
-      "claimed_pdf_page": 5,
-      "newly_matched_pages": [
-        5
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 140,
-      "quote": "effectively standardized expression values",
-      "claimed_pdf_page": 6,
-      "newly_matched_pages": [
-        6
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 140,
-      "quote": "peaks at 1",
-      "claimed_pdf_page": 7,
-      "newly_matched_pages": [
-        7
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 140,
-      "quote": "Pearson residuals are independent of sequencing depth and can be used for variable gene selection, dimensional reduction, clustering, visualization, and differential expression",
-      "claimed_pdf_page": 5,
-      "newly_matched_pages": [
-        5
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "quote-page-check.json",
-      "ax_node": 161,
-      "quote": "We centered and scaled all 16K genes",
-      "claimed_pdf_page": 13,
-      "newly_matched_pages": [
-        13
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "followup-quote-page-check.json",
-      "ax_node": 82,
-      "quote": "initial strategies focused on read-level (instead of UMI-level) data and modeled the measurement of each cell as a mixture of two components",
-      "claimed_pdf_page": 2,
-      "newly_matched_pages": [
-        2
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "followup-quote-page-check.json",
-      "ax_node": 85,
-      "quote": "the authors of SCnorm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data",
-      "claimed_pdf_page": 3,
-      "newly_matched_pages": [
-        3
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "followup-quote-page-check.json",
-      "ax_node": 88,
-      "quote": "DESeq [23] uses the negative binomial distribution for read count data",
-      "claimed_pdf_page": 11,
-      "newly_matched_pages": [
-        11
-      ],
-      "claimed_page_contains_quote": true
-    },
-    {
-      "record": "followup-quote-page-check.json",
-      "ax_node": 95,
-      "quote": "the data from each droplet represents a technical replicate of a bulk RNA sample. There is no biological variation in this sample",
-      "claimed_pdf_page": 5,
-      "newly_matched_pages": [
-        5
-      ],
-      "claimed_page_contains_quote": true
-    }
-  ]
-}
+{"pdf": "Hafemeister_Satija_2019_sctransform.pdf", "pages": 15, "scope": "Text-location matching only; not scientific interpretation or model accuracy.", "on_claimed_page": {"quote-page-check.json": "13/13", "followup-quote-page-check.json": "4/4", "t1r-test/quote-page-check.json": "10/11"},
+ "records": [
+  {"record": "quote-page-check.json", "ax_node": 26, "quote": "Our approach can be applied to any UMI-based scRNA-seq dataset", "claimed_pdf_page": 1, "newly_matched_pages": [1], "claimed_page_contains_quote": true},
+  {"record": "quote-page-check.json", "ax_node": 26, "quote": "our procedure can apply widely to any UMI-based scRNA-seq experiment", "claimed_pdf_page": 8, "newly_matched_pages": [8], "claimed_page_contains_quote": true},
+  {"record": "quote-page-check.json", "ax_node": 26, "quote": "We explicitly model the UMI counts for a given gene using a generalized linear model", "claimed_pdf_page": 11, "newly_matched_pages": [11], "claimed_page_contains_quote": true},
+  {"record": "quote-page-check.json", "ax_node": 26, "quote": "normalization and variance stabilization of single-cell UMI datasets", "claimed_pdf_page": 10, "newly_matched_pages": [10], "claimed_page_contains_quote": true},
+  {"record": "quote-page-check.json", "ax_node": 27, "quote": "five UMI datasets from diverse tissues, generated with both plate- and droplet-based protocols", "claimed_pdf_page": 2, "newly_matched_pages": [2], "claimed_page_contains_quote": true},
+  {"record": "quote-page-check.json", "ax_node": 27, "quote": "SCnorm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data", "claimed_pdf_page": 3, "newly_matched_pages": [3], "claimed_page_contains_quote": true},
+  {"record": "quote-page-check.json", "ax_node": 32, "quote": "33k PBMCs from a Healthy Donor, v1 Chemistry", "claimed_pdf_page": 14, "newly_matched_pages": [14], "claimed_page_contains_quote": true},
+  {"record": "quote-page-check.json", "ax_node": 32, "quote": "we make an implicit assumption that the majority of genes in the dataset do not exhibit significant biological variation", "claimed_pdf_page": 10, "newly_matched_pages": [10], "claimed_page_contains_quote": true},
+  {"record": "quote-page-check.json", "ax_node": 37, "quote": "We utilize the Pearson residuals (response residuals divided by the expected standard deviation), effectively representing a variance-stabilizing transformation (VST), where both lowly and highly expressed genes are transformed onto a common scale", "claimed_pdf_page": 5, "newly_matched_pages": [5], "claimed_page_contains_quote": true},
+  {"record": "quote-page-check.json", "ax_node": 37, "quote": "effectively standardized expression values", "claimed_pdf_page": 6, "newly_matched_pages": [6], "claimed_page_contains_quote": true},
+  {"record": "quote-page-check.json", "ax_node": 37, "quote": "peaks at 1", "claimed_pdf_page": 7, "newly_matched_pages": [7], "claimed_page_contains_quote": true},
+  {"record": "quote-page-check.json", "ax_node": 37, "quote": "Pearson residuals are independent of sequencing depth and can be used for variable gene selection, dimensional reduction, clustering, visualization, and differential expression", "claimed_pdf_page": 5, "newly_matched_pages": [5], "claimed_page_contains_quote": true},
+  {"record": "quote-page-check.json", "ax_node": 58, "quote": "We centered and scaled all 16K genes", "claimed_pdf_page": 13, "newly_matched_pages": [13], "claimed_page_contains_quote": true},
+  {"record": "followup-quote-page-check.json", "ax_node": 82, "quote": "initial strategies focused on read-level (instead of UMI-level) data and modeled the measurement of each cell as a mixture of two components", "claimed_pdf_page": 2, "newly_matched_pages": [2], "claimed_page_contains_quote": true},
+  {"record": "followup-quote-page-check.json", "ax_node": 85, "quote": "the authors of SCnorm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data", "claimed_pdf_page": 3, "newly_matched_pages": [3], "claimed_page_contains_quote": true},
+  {"record": "followup-quote-page-check.json", "ax_node": 88, "quote": "DESeq [23] uses the negative binomial distribution for read count data", "claimed_pdf_page": 11, "newly_matched_pages": [11], "claimed_page_contains_quote": true},
+  {"record": "followup-quote-page-check.json", "ax_node": 95, "quote": "the data from each droplet represents a technical replicate of a bulk RNA sample. There is no biological variation in this sample", "claimed_pdf_page": 5, "newly_matched_pages": [5], "claimed_page_contains_quote": true},
+  {"record": "t1r-test/quote-page-check.json", "ax_node": 90, "quote": "Our approach can be applied to any UMI-based scRNA-seq dataset.", "claimed_pdf_page": 1, "newly_matched_pages": [], "claimed_page_contains_quote": false},
+  {"record": "t1r-test/quote-page-check.json", "ax_node": 90, "quote": "We explicitly model the UMI counts for a given gene using a generalized linear model.", "claimed_pdf_page": 11, "newly_matched_pages": [11], "claimed_page_contains_quote": true},
+  {"record": "t1r-test/quote-page-check.json", "ax_node": 90, "quote": "a UMI-based gene expression matrix", "claimed_pdf_page": 10, "newly_matched_pages": [10], "claimed_page_contains_quote": true},
+  {"record": "t1r-test/quote-page-check.json", "ax_node": 91, "quote": "33,148 human peripheral blood mononuclear cells (PBMC) freely available from 10x Genomics", "claimed_pdf_page": 2, "newly_matched_pages": [2], "claimed_page_contains_quote": true},
+  {"record": "t1r-test/quote-page-check.json", "ax_node": 97, "quote": "The dataset used in the main text is", "claimed_pdf_page": 14, "newly_matched_pages": [14], "claimed_page_contains_quote": true},
+  {"record": "t1r-test/quote-page-check.json", "ax_node": 97, "quote": "33k PBMCs from a Healthy Donor, v1 Chemistry", "claimed_pdf_page": 14, "newly_matched_pages": [14], "claimed_page_contains_quote": true},
+  {"record": "t1r-test/quote-page-check.json", "ax_node": 107, "quote": "We treat the residuals from this model as normalized expression levels.", "claimed_pdf_page": 5, "newly_matched_pages": [5], "claimed_page_contains_quote": true},
+  {"record": "t1r-test/quote-page-check.json", "ax_node": 110, "quote": "We utilize the Pearson residuals (response residuals divided by the expected standard deviation), effectively representing a variance-stabilizing transformation (VST), where both lowly and highly expressed genes are transformed onto a common scale.", "claimed_pdf_page": 5, "newly_matched_pages": [5], "claimed_page_contains_quote": true},
+  {"record": "t1r-test/quote-page-check.json", "ax_node": 111, "quote": "these results suggest that our Pearson residuals represent effectively standardized expression values that are not influenced by technical metrics", "claimed_pdf_page": 6, "newly_matched_pages": [6], "claimed_page_contains_quote": true},
+  {"record": "t1r-test/quote-page-check.json", "ax_node": 111, "quote": "residuals should be distributed with a mean of zero and unit variance", "claimed_pdf_page": 6, "newly_matched_pages": [6], "claimed_page_contains_quote": true},
+  {"record": "t1r-test/quote-page-check.json", "ax_node": 111, "quote": "Variance of Pearson residuals is independent of gene abundance, demonstrating that the GLM has successfully captured the mean-variance relationship inherent in the data.", "claimed_pdf_page": 7, "newly_matched_pages": [7], "claimed_page_contains_quote": true}
+ ]}

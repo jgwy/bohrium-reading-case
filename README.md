@@ -1,240 +1,302 @@
 # Correct quotations, overbroad claims: a paper-reading case
 
-**Release v1.2.**
+**Release v1.3.**
 
-**Reading problem.** A methods paper usually states *where its method applies* in a few scattered sentences:
-the abstract, the model definition, related work. When an AI assistant answers "does this paper support
-using the method on my data?", it can quote those sentences exactly and still summarize the scope wrongly
-with words such as *only*, *never* or *nothing*. Checking that every quote is on its page does not catch this.
+**Reading problem.** A methods paper states *where its method applies* in a few scattered sentences. When an
+AI assistant answers "does this paper support using the method on my data?", it can quote those sentences
+exactly and still summarize the scope wrongly with words such as *only*, *never* or *nothing*. Checking that
+every quote is on its page does not catch this, because "X never appears" is a claim about the whole paper.
 
-**Case.** One real session in the Bohrium Science Space desktop App (玻尔·科学空间, reading assistant) on the
-2019 sctransform paper. Thirteen selected quotations were all on their stated pages, yet two scope statements
-were too broad. An independent source check found the counter-passages, a page-specific follow-up supplied
-them, and the App revised both statements. The App's own working panel shows why one of them happened.
+**Case.** Real sessions in the Bohrium Science Space desktop App (玻尔·科学空间) on the 2019 sctransform paper:
+1. **Round 1** (paper reader, 阅读助手): 13/13 selected quotes on their pages, yet two of its five absence/uniqueness
+   statements were contradicted by the paper (a third is arguable). The App's working panel shows why: a lexical search that did not
+   contain the term it later declared absent.
+2. **Round 2**: a page-specific follow-up; the App revised both statements (assisted revision).
+3. **T1-R probe** (new task, PDF attached): the same question plus a two-sentence rule "name your search terms
+   before any absence claim". Measured with the **same two scripts**: every lexical absence claim now names its
+   pattern and the replicate error did not recur, but **two "only/all" claims are still wrong** (2 of 6, against
+   2 + 1 arguable of 5 in round 1): a regex that cannot match the suspended hyphen in "plate- and droplet-based",
+   and an unread summary of search hits. The gain is that both errors are visible and checkable from the answer.
 
-**What you can reuse.** A claim-scope audit workflow with prompt templates ([WORKFLOW.md](WORKFLOW.md)) and
-two small scripts that check quote pages and absence claims against any PDF.
+**What you can reuse.** A claim-scope audit workflow with prompt templates ([WORKFLOW.md](WORKFLOW.md)), two
+scripts that check quote pages and absence claims against any PDF, and feature-level notes on how the App's
+two reading routes ground answers ([Bohrium notes](#bohrium-science-space-feature-notes-and-feedback)).
 
-One paper, the original two-round reader session and one later valid T1-R development probe. An earlier uncertain input event is retained but excluded. This is not an official score or a randomized benchmark.
+Not claimed: a randomized benchmark, an official score, or a stable or causal effect of T1-R (n = 1, different
+App route).
 
 ## How to read this repository
 
-Three kinds of text appear, and they are kept apart:
-
-| Label used below | Meaning | Where it lives |
+| Label | Meaning | Where it lives |
 |---|---|---|
-| **Paper** (p. N) | Wording from the publisher PDF, with its physical page | [materials/](materials/Hafemeister_Satija_2019_sctransform.pdf) |
-| **App** | What the reading assistant displayed, unchanged in wording | [app-answer.md](app-answer.md), [app-followup-answer.md](app-followup-answer.md), raw `*-ax.txt` exports |
+| **Paper** (p. N) | Wording from the publisher PDF, physical page | [materials/](materials/Hafemeister_Satija_2019_sctransform.pdf) |
+| **App** | What the App displayed, wording unchanged | `app-*.md`, raw `*-ax.txt`, `t1r-test/*-excerpt.*` |
 | **Our check** | Our source check, inference or judgement | [verification.md](verification.md), `*.tsv`, `*-check.json`, script outputs |
 
-[M] marks something measured or observed in a file here; [I] marks our inference.
+[M] = measured or observed in a file here; [I] = our inference. AX = the accessibility text of the actual App
+window, exported during the session: what was on screen, not model telemetry.
 
 | Step | Evidence |
 |---|---|
-| Paper | [Publisher PDF](materials/Hafemeister_Satija_2019_sctransform.pdf), 15 pages, CC BY 4.0; rights in [SOURCE.md](SOURCE.md) |
-| Round 1 | [prompt.txt](prompt.txt) -> [app-answer.md](app-answer.md); raw [app-answer-complete-ax.txt](app-answer-complete-ax.txt); [export-provenance.json](export-provenance.json) |
-| App working panel (round 1, mid-answer) | [app-inprogress-ax.txt](app-inprogress-ax.txt); [inprogress-export-provenance.json](inprogress-export-provenance.json) |
+| Paper | [Publisher PDF](materials/Hafemeister_Satija_2019_sctransform.pdf), 15 pages, CC BY 4.0 ([SOURCE.md](SOURCE.md)) |
+| Round 1 | [prompt.txt](prompt.txt) -> [app-answer.md](app-answer.md) (raw: round-1 nodes of [app-followup-complete-ax.txt](app-followup-complete-ax.txt)); [export-provenance.json](export-provenance.json) |
+| Round 1 working panel, mid-answer | [app-inprogress-ax.txt](app-inprogress-ax.txt); [inprogress-export-provenance.json](inprogress-export-provenance.json) |
 | Source check | [source-answer-review.tsv](source-answer-review.tsv), [verification.md](verification.md), [quote-page-check.json](quote-page-check.json) |
 | Round 2 | [followup-prompt.txt](followup-prompt.txt) -> [app-followup-answer.md](app-followup-answer.md); raw [app-followup-complete-ax.txt](app-followup-complete-ax.txt); [followup-export-provenance.json](followup-export-provenance.json) |
 | Revision | [revision-comparison.tsv](revision-comparison.tsv), [followup-quote-page-check.json](followup-quote-page-check.json) |
+| T1-R probe | [sent prompt](t1r-test/sent-prompt-single-line.txt), [pre-send field](t1r-test/before-send-excerpt.txt), [search steps](t1r-test/search-observations-excerpt.jsonl), [answer](t1r-test/final-answer-excerpt.txt), [quote spans](t1r-test/quote-page-check.json), [provenance](t1r-test/PROVENANCE.json), [interface events](t1r-test/INTERFACE_EVENT.md), [screenshot](t1r-test/workspace-result.jpg) |
 | Re-runnable checks | [reproduce_quote_pages.py](reproduce_quote_pages.py) -> [output](reproduce-quote-pages-output.json); [replay_absence_search.py](replay_absence_search.py) -> [output](replay-absence-search-output.json) |
-| Screenshots | [02](02-reading-request.jpg), [03](03-method-page.jpg), [04](04-followup.jpg) (described under "Repeat the App session") |
 
-AX = the accessibility text of the actual App window, exported during the session. It is what was visible on
-screen, not native model telemetry. The Markdown answers remove UI wrappers and duplicate headings and rejoin
-equation glyphs; wording and errors are kept. The first answer was never overwritten.
+The Markdown answers remove UI wrappers and rejoin equation glyphs; wording and errors are kept. No answer was
+overwritten.
 
 ## The question and why this method
 
 **Constructed scenario** (no real patients): six tumour biopsies measured with 10x UMI counts plus a separate
-Smart-seq2 TPM matrix. Three questions: does the paper support sctransform on both inputs; do six biopsies
-establish six independent patients; can Pearson residuals be read as comparable expression levels across genes?
+Smart-seq2 TPM matrix. Does the paper support sctransform on both inputs; do six biopsies establish six
+independent patients; can Pearson residuals be read as comparable expression levels across genes?
 
-Each question is a scope decision whose evidence is spread across the paper (pp. 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13, 14).
-Design choices and the trade-off behind each:
+Each question is a scope decision whose evidence is spread over pp. 1–14. Design choices:
 
 | Choice | Why | Cost / limit |
 |---|---|---|
-| Ask inside the App's reading assistant with the PDF open | The assistant reads the paper itself (parsed into blocks, see next section) and cites pages, so every claim is tied to a location we can open. | We see only what the UI shows; model, version and tokens are not visible. |
-| Force a three-way split: paper states / follows from scenario / unknown | Keeps "the paper says UMI" apart from our inference "so TPM is out of scope" and from what nobody can know (the biopsy-to-patient mapping). | Longer answers. |
-| One short exact quote + page per claim | Makes a mechanical check possible: a quote is on its page or it is not. | Proves location only, not that the surrounding sentence is right. |
-| Separate scope review of absence / uniqueness words | Those words are claims about the whole paper; no single quote can support them. | Needs a human reading and a synonym list. |
-| Correct with a follow-up in the same session, not a fresh run | Keeps the original answer as evidence and tests whether the assistant can revise against page evidence. | It is assisted revision, not self-correction. |
+| Ask the App with the PDF open, "Use only this PDF" | The assistant reads the paper itself and cites pages, so every claim is tied to a location we can open. | We see only what the UI shows; model, tokens and cost are not visible. |
+| Force a three-way split: paper states / follows from scenario / unknown | Keeps "the paper says UMI" apart from our inference "so TPM is out of scope" and from what nobody can know (biopsy-to-patient mapping). | Longer answers. |
+| One short exact quote + page per claim | Makes a mechanical check possible. | Proves location only, not that the sentence around it is right. |
+| Separate audit of absence / uniqueness words | They are claims about the whole paper; no single quote supports them. Only a whole-text search can test them, which is also why the full PDF is shipped. | Needs a synonym list written by a human. |
+| Correct with a page-specific follow-up in the same session | Keeps the first answer as evidence; tests revision against page evidence. | Assisted revision, not self-correction. |
+| Then change the first prompt (T1-R) and re-measure with the same scripts | Tests whether the error class can be prevented, not just repaired. | One run, different App route (below). |
 
-## How the reading assistant handled the PDF (observed)
+## How the reading assistant grounded round 1 (observed)
 
-A snapshot of the App window taken while the first answer was still being generated
-([app-inprogress-ax.txt](app-inprogress-ax.txt), captured 02:25:48 UTC+8) shows the assistant's working panel [M]:
+A snapshot taken while the first answer was generating ([app-inprogress-ax.txt](app-inprogress-ax.txt),
+02:25:48 UTC+8) shows the working panel [M]:
 
 | AX node | What the App showed | What it tells a user |
 |---|---|---|
-| 23-27 | Step summaries: inspect the PDF structure, read the rest, "run targeted searches", "confirm with exact-case searches". | The assistant works in tool steps over the paper, not from memory of it. |
-| 28 | `查看 Hafemeister_Satija_2019_sctransform.jsonl` | It reads a parsed block file of the PDF; the final answer says "197 blocks, pages 1–14". |
-| 29 | `搜索内容 Smart\|TPM\|transcripts\|biops\|patient\|Donor\|donor\|full-length\|full length，共 1 处` | Searches are regular expressions over the parsed text; the panel shows the pattern and the hit count. |
-| 31 | "Only one match: \"Healthy Donor\" ... No Smart-seq2, no TPM, no biopsy, no patient." | The absence statements in the answer come from this kind of lexical search. |
-| 32-77 | Draft notes listing each quote with a block `resourceId` (`pdf-block-…`), line and page. | Citations are anchored to parsed blocks, consistent with all 13 checked quotes being on their pages [I]. |
-| 99 | Draft: "doesn't address patient/sample independence or replication design". | "Replication" enters the draft here; the visible search pattern above does not contain it. |
-| 119-128 | "正在分析... 29.8s"; input bar with 请求批准 (approval mode), "上下文已使用 14%", 推理强度 (disabled), "内容由 AI 生成，请仔细甄别". | Context use is shown; the reasoning-strength control was disabled while generating (screenshots 02 and 03 show it set to 标准). |
-| 143-146 | PDF toolbar: 全文翻译 off, **阅读助手 on**, 论文速览 off, 图表速览 off; page field "/ 15". | Only the reading assistant was used; summary, figure and translation features were not. |
+| 23-27 | Step summaries: inspect the PDF structure, read the rest, run targeted searches, confirm with exact-case searches. | The assistant works in tool steps over the paper. |
+| 28 | `查看 Hafemeister_Satija_2019_sctransform.jsonl` | It reads a parsed block file of the PDF; the answer says "197 blocks, pages 1–14". |
+| 29 | `搜索内容 Smart\|TPM\|transcripts\|biops\|patient\|Donor\|donor\|full-length\|full length，共 1 处` | Searches are regular expressions; the panel shows pattern and count. |
+| 31 | "Only one match: \"Healthy Donor\" ... No Smart-seq2, no TPM, no biopsy, no patient." | Absence statements come from this lexical search. |
+| 32-77 | Draft notes: each quote with a block `resourceId` (`pdf-block-…`), line and page. | Citations are anchored to parsed blocks, consistent with 13/13 quotes on their pages [I]. |
+| 99 | Draft: "doesn't address patient/sample independence or replication design". | "Replication" enters here; the visible pattern does not contain it. |
+| 119-128 | "正在分析... 29.8s"; 请求批准, "上下文已使用 14%", 推理强度 (disabled while generating). | Context use is shown. |
+| 143-146 | 全文翻译 off, **阅读助手 on**, 论文速览 off, 图表速览 off; page field "/ 15". | Only the reading assistant was used. |
 
-After the answer finished, the App collapsed this panel behind "已处理（用时 1m 6s）". Earlier search steps
-(nodes 24, 26) are collapsed summaries without patterns; they name Smart-seq2, TPM, non-UMI, biopsy and
-patient, but not replicate or read-level. The block file itself is internal
-and not available to us.
+After the answer finished, the panel collapsed behind "已处理（用时 1m 6s）". Earlier search steps (nodes 24, 26)
+are summaries without patterns; they name Smart-seq2, TPM, non-UMI, biopsy and patient, not replicate or
+read-level. Page 15 (references 22–39, publisher's note) was outside the parsed range [M].
 
-Practical tips from this record [I]:
-- Expand the working panel while the answer is generated (or export it); it is the only place the search
-  patterns behind an "X does not occur" statement are visible.
-- The parsed block file covered pages 1–14 of 15; page 15 holds only references 22–39 and the publisher's note [M, from the extracted text],
-  so nothing in the body was missed here, but check the stated page range on your own paper.
-- Keep 阅读助手 as the only feature on when you want an answer grounded in the paper text alone, and say so in
-  the prompt ("Use only this PDF").
+## Results (round 1)
 
-## Results
-
-| Question | Paper | App (round 1) | Our check |
+| Question | Paper | App | Our check |
 |---|---|---|---|
-| UMI and TPM inputs | "Our approach can be applied to any UMI-based scRNA-seq dataset" (p. 1); "We explicitly model the UMI counts…" (p. 11) | Supports the 10x UMI input, not the Smart-seq2 TPM input | Supported. TPM exclusion is an inference from the count-model input contract, not a TPM experiment in the paper. |
-| Six biopsies = six patients? | No biopsy or patient text; the main-text dataset is PBMCs from one healthy donor (p. 14) | No; the mapping is unknown | Supported as scenario reasoning; the paper cannot supply the mapping. |
-| Residuals comparable across genes? | "transformed onto a common scale" (p. 5); z = (x − μ)/σ (p. 11); PCA additionally "centered and scaled" (p. 13) | Only as standardized deviations, not absolute expression | Supported. Keep the p. 9 caveat on depth independence and read "peaks at 1" (p. 7) as a distribution, not a per-gene rule. |
+| UMI and TPM inputs | "Our approach can be applied to any UMI-based scRNA-seq dataset" (p. 1); "We explicitly model the UMI counts…" (p. 11) | Supports the 10x UMI input, not the Smart-seq2 TPM input | Supported. TPM exclusion is an inference from the count-model input contract, not a TPM experiment. |
+| Six biopsies = six patients? | No biopsy or patient text; main dataset is PBMCs from one healthy donor (p. 14) | No; the mapping is unknown | Supported as scenario reasoning. |
+| Residuals comparable across genes? | "transformed onto a common scale" (p. 5); z = (x − μ)/σ (p. 11); PCA "centered and scaled" (p. 13) | Only as standardized deviations, not absolute expression | Supported. Keep the p. 9 caveat on depth independence; "peaks at 1" (p. 7) is a distribution, not a per-gene rule. |
 
-All 13 selected round-1 quotes and 4 round-2 quotes are on their stated pages [M]; this is a location check,
-not an accuracy percentage. Full review: [source-answer-review.tsv](source-answer-review.tsv), [verification.md](verification.md).
+13 round-1 and 4 round-2 quotes are on their stated pages [M]; this is a location check, not an accuracy percentage.
 
-## Why the two statements were overbroad
+## Why two round-1 statements were overbroad
 
-| | App wording (round 1) | Paper | Our check |
+| | App wording | Paper | Our check |
 |---|---|---|---|
-| A2 | "Nothing about biopsies, patients, or replicate design — those terms do not occur." | "the data from each droplet represents a technical replicate of a bulk RNA sample" (p. 5) | Absence claim not covered by its search: "replicat" is absent from the visible pattern and present on p. 5. |
-| A3 | "The only reference to non-UMI data is about a different tool … SCnorm" (p. 3) | "initial strategies focused on read-level (instead of UMI-level) data" (p. 2); "DESeq … for read count data" (p. 11) | Uniqueness claim true for the literal token, false for the concept: "non-UMI" occurs only on p. 3, its synonyms on pp. 2 and 11. |
+| A2 | "Nothing about biopsies, patients, or replicate design — those terms do not occur." | "the data from each droplet represents a technical replicate of a bulk RNA sample" (p. 5) | `replicat` is absent from the visible pattern and present on p. 5. |
+| A3 | "The only reference to non-UMI data is about a different tool … SCnorm" (p. 3) | "initial strategies focused on read-level (instead of UMI-level) data" (p. 2); "DESeq … for read count data" (p. 11) | True for the token "non-UMI" (p. 3 only), false for the concept. |
 
-[replay_absence_search.py](replay_absence_search.py) replays the App's visible pattern on our text
-extraction and audits these claims ([actual output](replay-absence-search-output.json)) [M]:
-- the visible pattern gives exactly one case-sensitive match, "Donor" on p. 14, consistent with the App's
-  "共 1 处" (the App searched its own block file, so this is consistency, not identity);
-- `biops`, `patient`, `Smart-seq`, `TPM`: no match on any page, so A1 ("Smart-seq2 and TPM never appear") holds for this PDF;
-- `replicat`: not in the visible pattern, match on p. 5;
-- `non-UMI`: p. 3 only; `read-level`: p. 2; `read count`: p. 11 (and the p. 15 reference list).
+[replay_absence_search.py](replay_absence_search.py) replays the visible pattern on our extraction: exactly one
+case-sensitive match, "Donor" on p. 14, consistent with "共 1 处" [M]. `biops`, `patient`, `Smart-seq`, `TPM` have
+no match, so A1 holds.
 
-Interpretation [I]: both errors are lexical-search errors stated as whole-paper facts. A2 names a term the
-visible search did not test, and no step summary names it (p. 5 contradicts the claim either way). A3 is a
-synonym gap: "non-UMI" was searched (node 26), its synonyms were not named, and the search-style answer is right about the word and wrong about
-the idea. Neither is a quotation or page error, which is why the quote check passed.
+Interpretation [I]: both errors are lexical-search results stated as whole-paper facts: A2 names a term no
+visible search tested; A3 searched a token and not its synonyms. Neither is a quotation error, which is why the
+quote check passed. **Tested repair** [M]: the page-specific follow-up ([followup-prompt.txt](followup-prompt.txt))
+made the App revise both and add the p. 11 DESeq passage itself ([revision-comparison.tsv](revision-comparison.tsv)).
+The counter-evidence came from our check, so this is repair, not prevention.
 
-**Remedy that was tested** [M]: the page-specific follow-up ([followup-prompt.txt](followup-prompt.txt)). The
-App quoted its earlier sentences, revised both, added the p. 11 DESeq passage on its own, and kept the three
-conclusions ([revision-comparison.tsv](revision-comparison.tsv)). The counter-evidence came from our check, so
-this shows the assistant can revise against page evidence, not that it finds the error unaided.
+## Before and after T1-R, measured with the same checks
 
-## T1-R observed once: improvement and remaining overreach
+T1-R = the original prompt plus two sentences: *"Before writing that the paper never mentions something, or that
+a passage is the only one about a topic, list the exact search terms and synonyms you searched, and report the
+pages of every hit. If a term was not searched, do not make the absence claim."* It was sent once in a fresh task,
+with no page hint ([sent text](t1r-test/sent-prompt-single-line.txt); the [pre-send field](t1r-test/before-send-excerpt.txt)
+shows the complete rule). Both columns below come from the same two scripts and the same PDF.
 
-A fresh App task received the original question plus both T1-R sentences, with only whitespace normalized to a single line. [The pre-send field excerpt](t1r-test/before-send-excerpt.txt) contains the complete rule; [the sent text](t1r-test/sent-prompt-single-line.txt) records it. No page-specific counterexample was supplied.
+Counting rule: every sentence that says something does not occur, is never done, or is the only/all of a
+kind. Both answers were counted by the same rule; A4 is judged by reading, all others by the replay script.
 
-The [working-panel excerpts](t1r-test/search-observations-excerpt.jsonl) show actual searches. The [captured final-answer excerpt](t1r-test/final-answer-excerpt.txt) reports terms and page hits:
+| Measure | Round 1 (T1) | T1-R probe |
+|---|---|---|
+| Absence/uniqueness claims in the answer | 5 (A1–A5) | 6 (B1–B6) |
+| ... whose lexical part is backed by a search pattern shown in the answer | 0 | 5 of 5 lexical claims (section "Search terms used (for the absence claims below)"); B5, about evaluation, cannot be backed by a pattern |
+| ... contradicted by the PDF text | **2**, plus 1 arguable (A2 p. 5; A3 pp. 2, 11; A4) | **2** (B3, B6, below) |
+| "Replicate design does not occur" | stated | not stated; "technical replicate" listed among the hits of its replicat search |
+| Read-level / read-count wording reached without a hint | no | at page level: its pattern hit read-level (p. 2) and read count (p. 11; p. 15 is a reference); the answer does not quote them |
+| Quotes on claimed page (`reproduce_quote_pages.py`) | 13/13 | 10/11: the miss quotes the abstract with a full stop where the paper's sentence continues ("dataset and is freely available…"); words otherwise verbatim |
+| Pages read | parsed blocks, pp. 1–14 of 15 | all 15 (`pdftotext`, per-page files) |
+| App count "共 N 处" vs our replay | 1 vs 1 match | 20 of 20 equal our **matching-line** count, 14 of 20 the match count; the 6 searches where lines and matches differ all follow lines |
+| UI badge | 1m 6s | 2m 10s |
 
-| Observed behavior | Evidence and limit |
-|---|---|
-| The search includes `donor\|individual\|subject\|participant\|replicat`. | The App reports 7 group hits on pp. 2,4,5,9,14, including “technical replicate.” This is not seven occurrences of “replicate.” |
-| It searches full-length / plate-based / non-UMI / read-level and related wording. | The App reports 5 group hits on pp. 2,3,11,15. Exact patterns are retained in the working-panel excerpts. |
-| The visible answer lists search terms and hit pages, and no longer says replicate-related wording is absent. | The captured question-2 text keeps the biopsy-to-patient mapping unknown. Some other long nodes were clipped around 512 characters, so this is not a complete untruncated answer. |
-| A uniqueness overreach remains. | The search table calls its five hits “the only non-UMI / read-level / plate-based mentions.” Matching a chosen pattern does not establish exhaustive conceptual coverage; p.8 also describes plate- and droplet-based protocols. |
+Round-1 claims not in the round-1 tables above: A4 "The only remotely relevant statement is an assumption about
+heterogeneity (p. 10)" (arguable: p. 5 calls each droplet "a technical replicate", p. 9 discusses cell-type RNA
+content); A5 "there is no empirical demonstration for full-length/non-UMI data" (holds).
 
-The App displayed **2m 10s**. This is one non-randomized development observation, not evidence of stable or causal improvement. It used **a new desktop task with the PDF attached**, and the answer says it extracted text directly with `pdftotext`. The original two-round case used the paper reader's parsed-block route. The changed entry mode and extraction method prevent a matched prompt-effect comparison.
+**Remaining failure B3** [M]: the answer lists `full[- ]?length|plate[- ]?based|non[- ]?UMI|read[- ]?level|…`
+→ "pages 2, 3, 11, 15 (5 hits; these are the only non-UMI / read-level / plate-based mentions)". The paper writes
+"generated with both plate- and droplet-based protocols" (p. 2) and "including both plate- and droplet-based
+protocols" (p. 8). `plate[- ]?based` matches neither (the hyphen is followed by " and"); the stem `plate` matches
+both. The answer itself says the paper's plate-based datasets are UMI datasets (node 92), so the scientific
+conclusion is unaffected [I]; the "only" wording is not.
 
-An earlier multiline-entry event appeared to submit before the planned Send action. Delivery of the appended rule was not established; [its captured excerpt](t1r-test/initial-entry-excerpt.txt) and [interface record](t1r-test/INTERFACE_EVENT.md) are retained and **not counted as a T1-R test**. [Provenance](t1r-test/PROVENANCE.json) declares privacy/UI omissions, local-path redaction and node truncation.
+**Remaining failure B6** [M]: for `comparable|…|across gene|between gene|…` the answer says "9 hits; all are
+'across genes'/'between genes' in the sense of pooling information". The replay's contexts show otherwise for
+p. 3 ("Relationship between gene variance and cell sequencing depth", Fig. 1) and p. 5 ("still exhibited
+substantial variation across genes"). This is a summary of hits the model did not open, the same "all/only"
+overreach in a new place. Its supporting point (the word "comparable" never occurs, B4) holds.
 
-[The real safe screenshot](t1r-test/workspace-result.jpg) was captured after completion in the PDF workbench. Opening that view does not change the task's original execution mode. No account-bearing screenshot is included.
+**Page lists** [M]: for two search groups the answer's page list omits p. 3 although the App's count includes
+p. 3 lines (Fig. 1 caption: "each gene individually", "Relationship between gene variance"). The counts come from
+the tool; page lists and "all are…" summaries are the model's restatement [I]. Check them against the panel.
 
+**What this shows and what it does not.** The number of contradicted claims did not fall (2 + 1 arguable → 2).
+What changed is their kind and visibility: round 1 declared absent a term it never searched (A2) and missed
+synonyms (A3); T1-R searched the terms, and its two errors are a pattern too narrow for the wording (B3) and an
+unread summary of hits (B6), both checkable from the answer alone by replaying the listed pattern. It does not show a causal effect: the probe ran in a different App route
+(new task, attached PDF, `pdftotext`) from round 1 (paper reader, parsed blocks), once. The next rule, T1-R2 in
+[WORKFLOW.md](WORKFLOW.md), asks for stems and "pattern → pages" wording instead of "only"; it is **untested**.
 
+## Bohrium Science Space: feature notes and feedback
+
+Two ways to ask the App about a paper, both used here [M unless marked]:
+
+| | Paper reader + 阅读助手 (rounds 1–2) | 新任务 + PDF attachment (T1-R) |
+|---|---|---|
+| Start | 文献阅读 → 本地导入 → open paper → switch on 阅读助手 | 新任务 → attach the PDF in the input box (chip "PDF·5.13MB") → type → 发送; the bar showed 选择运行位置：本地 and 请求批准 |
+| What the model reads | Parsed block file `<paper>.jsonl`; "197 blocks, pages 1–14" | Its own tool steps: page count → "Extract PDF text with layout" → "Split … into per-page files"; all 15 pages |
+| Citation anchor | `pdf-block-…` resource IDs and pages (draft notes) | File + page ("the article footer reads Page N of 15") |
+| Search | Regex; panel shows pattern and "共 N 处" | Same; 20 patterns visible |
+| Panel after completion | Collapsed behind "已处理（用时 1m 6s）" | Collapsed behind "已处理（用时 2m 10s）", AX exposes Expand |
+| Quote check | 13/13 on page | 10/11 (one added full stop) |
+| Context meter | 14% mid-answer (round 2 end: 16%) | 16% at the end |
+
+Tips that follow from the evidence:
+1. **Read the working panel, and know what the number means.** "共 N 处" equalled the number of matching *lines*
+   of layout-extracted text in all 20 T1-R searches, including all 6 where lines and occurrences differ. With
+   layout extraction one line can hold both columns.
+2. **Choose the route for the question.** The reader route anchors quotes to parsed blocks but its parsed file
+   stopped at p. 14 here; the task route read every page and lists every search, but its answers cite file pages.
+3. **Ask for search terms before absence claims** (T1-R) and **for stems, with "pattern → pages" wording**
+   (T1-R2, untested). Then replay the patterns with `replay_absence_search.py`.
+4. **Enter the prompt as one line and check the field before 发送**: in our first attempt a multi-line entry
+   produced an answer before an explicit send click, and the rule's delivery could not be confirmed
+   ([interface events](t1r-test/INTERFACE_EVENT.md); that raw export is not shipped, so this is our report).
+5. **Export before you follow up.** AX exports clip long nodes near 512 characters (T1-R nodes 90, 91, 111, 113);
+   keep the panel and answer of each round separately.
+
+Feedback for the product team [I, each tied to an observation above]: show the parsed page range next to the
+PDF page count in the reader; label search counts as lines or report occurrences and pages; offer a visible
+"new conversation" in the reader's 阅读助手 (none found in the menus we inspected, which forced the route change);
+make Enter/Send behaviour for multi-line input explicit; keep expanded search patterns available after an answer
+completes.
 
 ## Reusable workflow
 
-[WORKFLOW.md](WORKFLOW.md) turns this case into an eight-step claim-scope audit with prompt templates T1
-(used), T1-R (one development probe) and T2 (used), and explains how to point both scripts at another paper. In short:
-ask with a three-way split and page quotes -> check quote pages mechanically -> list every absence/uniqueness
-claim with its terms and synonyms -> search and open each hit -> follow up with page-specific evidence ->
-keep a revision table -> re-check the new quotes.
+[WORKFLOW.md](WORKFLOW.md): an eight-step claim-scope audit with templates T1 (used), T1-R (probed once),
+T1-R2 (untested) and T2 (used), and how to point both scripts at another paper. In short: ask with a three-way
+split and page quotes → check quote pages → list every absence/uniqueness claim with terms, synonyms and stems →
+search and open each hit → follow up with page evidence → keep a revision table → re-check new quotes.
 
-When it works: claims stated in the extractable main text of the supplied PDF. When it does not: figures,
-equations and tables as images; supplements not supplied; concepts expressed without any listed keyword.
+Works for claims in the extractable main text of the supplied PDF. Fails for figures, equations and tables as
+images, unsupplied supplements, and concepts expressed without any listed word or stem.
 
-## Repeat the App session
+## Repeat the App sessions
 
-Environment: Bohrium Science Space desktop App (bundle `com.bohrium.scix`) on macOS 27.0, Apple silicon. The
-installed App reads version 0.10.14 and its version file predates the session, so the session most likely
-ran 0.10.14 [I]; the UI did not display a version, model or token count.
+Environment: Bohrium Science Space desktop App (bundle `com.bohrium.scix`), macOS 27.0, Apple silicon. The installed
+App's bundle metadata read 0.10.14 with a modification time before the sessions (checked locally, not shipped),
+so they most likely ran 0.10.14 [I]; an update prompt to 0.10.15 was dismissed before T1-R ([PLAN](t1r-test/PLAN.md);
+the plan's "new conversation on the same imported PDF" could not be followed, see INTERFACE_EVENT.md). The UI showed no model, version or token count.
 
-1. In the App open **文献阅读 → 本地导入** and select the included PDF.
-2. Open the paper and switch on **阅读助手** (leave 论文速览, 图表速览, 全文翻译 off). The viewer shows 15 pages.
-3. Send [prompt.txt](prompt.txt) unchanged. Expand the working panel while it runs; export or copy the
-   complete answer before doing anything else.
-4. Run the checks below. Open the counter-passages on pp. 2, 5 and 11.
-5. Send [followup-prompt.txt](followup-prompt.txt) and save the second answer separately.
+Route A, rounds 1–2:
+1. 文献阅读 → 本地导入 → select the included PDF; open it (viewer shows "/ 15").
+2. Switch on **阅读助手**; leave 论文速览, 图表速览, 全文翻译 off.
+3. Send [prompt.txt](prompt.txt) unchanged. Expand the working panel while it runs; export or copy the answer.
+4. Run the checks below; open pp. 2, 5 and 11.
+5. Send [followup-prompt.txt](followup-prompt.txt); save the second answer separately.
 
-Screenshots (real, unedited, account name not visible): [02](02-reading-request.jpg) shows the original
-request and the completed round-1 answer with the 1m 6s badge; [03](03-method-page.jpg) shows Methods p. 11
-beside the session; [04](04-followup.jpg) shows the round-2 answer beside p. 5.
+Route B, T1-R:
+1. 新任务 → attach the same PDF to the input box (the bar offers 添加内容; we did not record which control attached it, and its file picker needed keyboard input) and confirm the attachment chip.
+2. Paste [t1r-test/sent-prompt-single-line.txt](t1r-test/sent-prompt-single-line.txt) as one line; check the field; 发送.
+3. After completion expand "已处理", copy each `搜索内容 … 共 N 处` line and the answer.
+4. Write the answer's quotes into a spans file like [t1r-test/quote-page-check.json](t1r-test/quote-page-check.json),
+   its search lines into a JSONL like [the excerpt](t1r-test/search-observations-excerpt.jsonl), and run both scripts.
+
+Screenshots (unedited, no account name visible): [02](02-reading-request.jpg) the request and the round-1 answer
+with the 1m 6s badge; [03](03-method-page.jpg) Methods p. 11 beside the session; [04](04-followup.jpg) the round-2
+answer beside p. 5; [t1r-test/workspace-result.jpg](t1r-test/workspace-result.jpg) the T1-R result in the PDF workbench.
 
 ![Round-2 answer beside page 5 of the paper](04-followup.jpg)
 
-**What counts as the same result.** Answers are generated, so wording will differ. Treat the case as
-reproduced if (a) the three conclusions match the Results table, (b) every quote you check is on its stated
-page, and (c) you find, or do not find, absence/uniqueness statements that the audit contradicts. Record (c)
-either way; a run without A2/A3 is a useful data point, not a failure.
+**What counts as the same result.** Wording will differ. Treat a repeat as matching if (a) the three conclusions
+match the Results table, (b) every checked quote is on its page, and (c) you record which absence/uniqueness
+claims the replay contradicts. A run without such errors is a data point, not a failure.
 
 ## Repeat the source checks
 
-Requirements: Python 3.10+ (we ran 3.12.2) and Poppler `pdftotext` (26.08.0) on PATH; no other packages,
-no network, no model. [requirements.txt](requirements.txt) also records pypdf, used only for the text budget.
+Python 3.10+ (we ran 3.12.2) and Poppler `pdftotext` (26.08.0) on PATH; no other packages, network or model.
 
 ```sh
-python3 reproduce_quote_pages.py  > my-quote-check.json
+python3 reproduce_quote_pages.py > my-quote-check.json
 python3 replay_absence_search.py  > my-absence-check.json
 ```
 
-Expected, as in the shipped outputs from our run on 2026-10-31: `"pages": 15`; all 17 records with
-`"claimed_page_contains_quote": true`; replay shows one visible-pattern match (p. 14) and the page hits listed
-above. A different Poppler version may change whitespace but should not change any page number; if one does,
-open that page in the PDF before trusting either result. Matching removes whitespace and joins line-end
-hyphens, so it validates text location only, not figures, equations or meaning.
+Expected, as in the shipped outputs (2026-10-31; T1-R part added in v1.3): line 1 of the quote check contains
+`"on_claimed_page": {"quote-page-check.json": "13/13", "followup-quote-page-check.json": "4/4", "t1r-test/quote-page-check.json": "10/11"}`;
+the replay contains `"app_count_equals_matching_lines": 20`, `"app_count_equals_matches": 14`, one round-1
+match (p. 14), A2 `replicat` → `[5]`, and B3 `plate[- ]?based` → `[]` but `plate` → `[2, 8]`. Another Poppler
+version may change whitespace or line breaks and so the line counts; page numbers should not change. Matching
+joins line-end hyphens and drops whitespace, so it validates location only.
 
 ## Measured facts and unknowns
 
-- App badges: 1m 6s (round 1) and 33s (round 2) [M]. The badge's scope is undefined: the mid-answer snapshot
-  already showed 正在处理…（用时 1m 7s） (node 21). They are not summed: the source check and follow-up
-  writing took additional, untimed effort.
-- The App reported reading 197 parsed blocks on pp. 1–14; the PDF has 15 pages, p. 15 being references and the publisher's note [M].
-  Our searches covered all 15. No supplements were supplied.
-- Model, version, token use and billed cost were not visible: **unavailable**, not zero.
-- Not claimed: a controlled baseline, a comparison with other tools, scientific reproduction, human-expert
-  approval, generality beyond this paper, or that T1-R has a stable or causal benefit.
+- Badges: 1m 6s (round 1), 33s (round 2), 2m 10s (T1-R) [M]. Their scope is undefined (the mid-answer snapshot
+  already showed 1m 7s); they are not summed and exclude our checking time.
+- Model, version, token use and cost: **unavailable**, not zero. The full PDF is shipped because absence claims
+  can only be audited against the whole text; it is CC BY 4.0 and counts 63,908 bytes of the text budget
+  ([TEXT_BUDGET.json](TEXT_BUDGET.json)).
+- Not claimed: a controlled baseline, comparison with other tools, scientific reproduction, expert approval,
+  generality beyond this paper, or a stable or causal T1-R effect.
 
 ## Sources and contribution
 
 Paper: Hafemeister C, Satija R. *Normalization and variance stabilization of single-cell RNA-seq data using
 regularized negative binomial regression*. Genome Biology 20, 296 (2019), DOI
-[10.1186/s13059-019-1874-1](https://doi.org/10.1186/s13059-019-1874-1); © The Author(s) 2019, CC BY 4.0,
-included unchanged ([SOURCE.md](SOURCE.md)).
+[10.1186/s13059-019-1874-1](https://doi.org/10.1186/s13059-019-1874-1); © The Author(s) 2019, CC BY 4.0, included
+unchanged ([SOURCE.md](SOURCE.md)).
 
-Our work: the reading scenario and prompts, both real App rounds and their exports, page-by-page quote
-checks, the scope review, the root-cause analysis from the App's working panel, the workflow and templates,
-and both scripts. App answers and the working-panel text are the App's output, attributed as such.
+Our work: the scenario and prompts, all App sessions and exports, quote and absence checks, the root-cause
+analysis from the working panels, the before/after measurement, the workflow and templates, both scripts and
+the App feature notes. App answers and panel text are the App's output, attributed as such.
 
-## Changes in v1.2
+## Changes in v1.3
 
-Added a single real T1-R probe with complete entered input, selected working-panel/final-output evidence, declared clipping/privacy transforms, a safe screenshot and the invalid initial-entry record. Updated T1-R status and limitations without rewriting the original answers or check results. No new script run or public release is claimed.
+- New: before/after table for T1-R measured with the same scripts and one counting rule; the two residual
+  failures (suspended hyphen; unread "all are…" summary) and the page-list caution; the "共 N 处 = matching lines" replay of all 20 T1-R searches; Bohrium route comparison,
+  tips and product feedback; Route B reproduction steps; expected script outputs; T1-R2 (untested) in WORKFLOW.md.
+- Scripts: `replay_absence_search.py` adds the T1-R part (reads the shipped search excerpt);
+  `reproduce_quote_pages.py` adds [t1r-test/quote-page-check.json](t1r-test/quote-page-check.json) and a summary
+  line. Outputs regenerated; round-1 and round-2 results unchanged.
+- Evidence: input-bar nodes added verbatim to the two T1-R excerpts (run location, approval mode, context meter).
+- Removed to keep the text budget: the separate round-1 AX export (its answer nodes are identical inside
+  `app-followup-complete-ax.txt`; only its end-of-round input bar, incl. "上下文已使用 14%", is lost; quote nodes
+  renumbered, see [quote-page-check.json](quote-page-check.json)),
+  the excluded first T1-R entry excerpt (an interface fault, still described in INTERFACE_EVENT.md), and the CC
+  legal code (LICENSE now names the license and links it; license unchanged).
 
-## Changes in v1.1
-
-Added: problem and design-rationale sections; the mid-answer working-panel export with provenance and its
-analysis; the root-cause section and `replay_absence_search.py` with its real output; the real output of
-`reproduce_quote_pages.py`; [WORKFLOW.md](WORKFLOW.md); environment, expected outputs and reproduction
-criteria; the Paper / App / Our-check labelling. Unchanged: the PDF, prompts, App exports, screenshots, check records and review tables of v1.0;
-only spacing typos in verification.md and one header line in app-answer.md were corrected. [TEXT_BUDGET.json](TEXT_BUDGET.json) re-measured.
-[提交说明.md](提交说明.md) is the competition submission note.
+v1.2 added the T1-R probe. v1.1 added the design rationale, working-panel analysis, the replay script, WORKFLOW.md
+and expected outputs. [提交说明.md](提交说明.md) is the competition submission note.
 
 ## License
 
-Text, prompts, check records and scripts written for this case: [CC BY-NC-ND 4.0](LICENSE). The paper PDF
-keeps its own CC BY 4.0 license ([SOURCE.md](SOURCE.md)). App output and screenshots are reproduced as
-observations of the Bohrium Science Space App; no ownership of the product interface is claimed.
+Text, prompts, check records and scripts written for this case: CC BY-NC-ND 4.0 ([LICENSE](LICENSE)). The paper
+PDF keeps CC BY 4.0 ([SOURCE.md](SOURCE.md)). App output and screenshots are reproduced as observations of the
+Bohrium Science Space App; no ownership of the product interface is claimed.

@@ -1,0 +1,63 @@
+{
+ "source_pdf": "materials/Hafemeister_Satija_2019_sctransform.pdf",
+ "source_answer": "t1r-test/final-answer-excerpt.txt (AX nodes as numbered there)",
+ "method": "Same matching as the round-1 and round-2 records: Poppler text, NFKC, line-hyphen joining, whitespace removed, case-folded. Spans are copied from the T1-R answer; a quotation that contains the paper's curly quotes is split into the parts outside them; quotations cut by AX clipping are used only up to the clip.",
+ "spans": [
+  {
+   "ax_node": 90,
+   "claimed_pdf_page": 1,
+   "quote": "Our approach can be applied to any UMI-based scRNA-seq dataset."
+  },
+  {
+   "ax_node": 90,
+   "claimed_pdf_page": 11,
+   "quote": "We explicitly model the UMI counts for a given gene using a generalized linear model."
+  },
+  {
+   "ax_node": 90,
+   "claimed_pdf_page": 10,
+   "quote": "a UMI-based gene expression matrix"
+  },
+  {
+   "ax_node": 91,
+   "claimed_pdf_page": 2,
+   "quote": "33,148 human peripheral blood mononuclear cells (PBMC) freely available from 10x Genomics"
+  },
+  {
+   "ax_node": 97,
+   "claimed_pdf_page": 14,
+   "quote": "The dataset used in the main text is"
+  },
+  {
+   "ax_node": 97,
+   "claimed_pdf_page": 14,
+   "quote": "33k PBMCs from a Healthy Donor, v1 Chemistry"
+  },
+  {
+   "ax_node": 107,
+   "claimed_pdf_page": 5,
+   "quote": "We treat the residuals from this model as normalized expression levels."
+  },
+  {
+   "ax_node": 110,
+   "claimed_pdf_page": 5,
+   "quote": "We utilize the Pearson residuals (response residuals divided by the expected standard deviation), effectively representing a variance-stabilizing transformation (VST), where both lowly and highly expressed genes are transformed onto a common scale."
+  },
+  {
+   "ax_node": 111,
+   "claimed_pdf_page": 6,
+   "quote": "these results suggest that our Pearson residuals represent effectively standardized expression values that are not influenced by technical metrics"
+  },
+  {
+   "ax_node": 111,
+   "claimed_pdf_page": 6,
+   "quote": "residuals should be distributed with a mean of zero and unit variance"
+  },
+  {
+   "ax_node": 111,
+   "claimed_pdf_page": 7,
+   "quote": "Variance of Pearson residuals is independent of gene abundance, demonstrating that the GLM has successfully captured the mean-variance relationship inherent in the data."
+  }
+ ],
+ "note": "Spans are verbatim, including the trailing period of the node-90 abstract quotation; the paper's sentence continues 'dataset and is freely available', so that span is expected to fail the exact check."
+}

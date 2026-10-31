@@ -11,10 +11,11 @@
   "privacy_transform": "Removed unrelated account/sidebar/menu UI and replaced local filesystem paths with <LOCAL_PATH>. Kept selected scientific text and original node IDs. Repeated identical working-panel text is retained once at its first observed timestamp.",
   "truncation": "The App AX export clips some long text nodes around512 characters. Nodes90,91,111,113 visibly end mid-sentence. This is not a complete untruncated answer; missing text was not reconstructed.",
   "input": "Original prompt followed by the two verbatim T1-R sentences; only whitespace normalized to one line. The pre-send value contains the complete input.",
-  "initial_entry": "Multiline entry appeared to submit before planned Send; appended-rule delivery was not established. Preserved separately and not counted as a T1-R result.",
+  "initial_entry": "Multiline entry appeared to submit before planned Send; appended-rule delivery was not established. Not counted as a T1-R result. Its excerpt was shipped in v1.2 and removed in v1.3 as an interface-fault record unrelated to any conclusion; the original stays in the local execution record.",
   "actual_mode": "Fresh desktop task with PDF attachment; direct pdftotext extraction, not the original paper-reading assistant parsed-block route.",
   "ui_duration": "2m10s; not an independently timed total or a causal speed comparison.",
   "model_version_tokens_cost": "Unavailable from the captured view.",
   "screenshot": "workspace-result.jpg is an unchanged screenshot captured after completion in the PDF workbench; no account sidebar or local path is visible.",
-  "interpretation": "Observed search terms and result pages, plus visible final wording. No stable, causal or general-performance claim."
+  "interpretation": "Observed search terms and result pages, plus visible final wording. No stable, causal or general-performance claim.",
+  "v1.3_additions": "Input-bar control nodes 35-37 and 39-41 (before-send) and 119-127 (final) were copied verbatim from the original exports so that the run-location, approval, reasoning and context-meter readings cited in README are checkable. No account content is in those nodes."
 }

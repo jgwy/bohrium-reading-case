@@ -6,6 +6,6 @@
   "format": "accessibility text export of the App window while the first answer was still generating; not native agent telemetry",
   "what_it_shows": "The reading assistant's visible working panel: step summaries, the file it opened (a parsed .jsonl of PDF blocks), one search step with its exact pattern and match count, and draft notes listing block resourceIds; plus the input-bar and PDF-viewer controls",
   "truncation": "The accessibility layer truncates long text nodes (for example node 18, the prompt). Earlier search steps (nodes 24 and 26) are collapsed summaries whose patterns are not shown.",
-  "later_state": "The finished first answer is app-answer-complete-ax.txt; the App then collapsed this working panel behind the button '已处理（用时 1m 6s）'.",
+  "later_state": "The finished first answer is in app-followup-complete-ax.txt (round-1 nodes); the App then collapsed this working panel behind the button '已处理（用时 1m 6s）'.",
   "not_included": "The other three log records are later snapshots of the same answers (already covered by the complete exports) and are not copied"
 }

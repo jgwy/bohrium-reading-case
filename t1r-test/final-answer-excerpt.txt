@@ -35,3 +35,12 @@ PRIVACY/UI EXCERPT of the actual accessibility export. Selected node IDs and sci
 					113 text What remains unknown / caveat. "Comparable expression levels across genes" is your phrasing — the paper never uses the word "comparable" (search above: no literal hit). Residuals are deviations from each gene's own expected count (positive = more UMIs than expected, negative = fewer; page 5), so they do not claim "gene A is expressed more than gene B in absolute molecules." The unit-variance property is also an empirical claim demonstrated on the tested (mostly immune/control) datasets, not a theorem for ar
 					114 text Bottom line: a qualified yes — within a single fitted sctransform model, the paper treats Pearson residuals as normalized expression values on a common scale (mean 0, unit variance for non-variable genes), which supports comparing their magnitudes across genes as standardized deviations. It does not support reading them as absolute, cross-gene expression levels, and it never uses the word "comparable."
 					118 text 01:58 AM
+				119 text entry area (disabled, settable) 继续补充或修改要求, Secondary Actions: Show Writing Tools
+					120 text 继续补充或修改要求
+				121 button 添加附件或引用
+				122 pop up button 请求批准, Help: 选择授权方式
+				123 image 上下文已使用 16%
+				124 pop up button (disabled) 推理强度
+				125 toggle button 开始语音输入, Value: off
+				126 button (disabled) 发送
+				127 text 内容由 AI 生成，请仔细甄别

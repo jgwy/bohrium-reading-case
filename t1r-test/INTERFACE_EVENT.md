@@ -1,9 +1,7 @@
-# Interface event before a valid T1-R observation
+# Interface events around the T1-R probe
 
-The existing reading-assistant view did not expose a new-conversation action in the inspected menus. A new desktop task was created with the same PDF attachment. Multi-line text entry was followed by an answer appearing before the planned explicit Send click. The visible user-message export is truncated, so delivery of the appended T1-R rule has not been established. This first observation is retained in initial-entry-observation.txt and is not counted as a valid T1-R test. New-task mode also differs from the previous reading-assistant mode; no matched comparison is claimed.
+1. The paper-reader view (文献阅读 → paper → 阅读助手) did not expose a new-conversation action in the menus we inspected, so the probe used a new desktop task (新任务) with the same PDF attached.
+2. First attempt: after multi-line text entry, an answer appeared before the planned explicit 发送 click, and the visible user-message export was truncated, so delivery of the appended T1-R rule was not established. It is **not counted** as a T1-R test. Its excerpt was shipped in v1.2; v1.3 drops it as an interface-fault record that supports no conclusion (the original remains in the local execution record).
+3. A fresh task was opened. Its attachment picker did not respond to automation (noWindowsAvailable); the same PDF was then attached by keyboard. The rule was entered as one line, the complete pre-send field was captured (before-send-excerpt.txt), and the task completed with a 2m 10s badge. This is the valid probe.
 
-A fresh task was opened for a controlled single-line entry. Its attachment picker became unresponsive to supported automation (noWindowsAvailable). Operator assistance to confirm the exact PDF was requested. No second prompt has been sent. Do not label the remedy tested until the complete input and actual output are captured.
-
-## Later status
-
-The paragraph above records the earlier state, before the valid single-line attempt. The later fresh task received the complete rule (before-send-excerpt.txt), completed with a 2m10s UI badge, and produced the selected final/search evidence here. The first observation remains excluded. New-task/PDF-attachment mode differs from the original paper-reader session. The later screenshot was taken after opening the PDF workbench; that viewing action does not change how the task originally ran.
+The new-task route differs from the original reader session (it ran pdftotext itself instead of reading the reader's parsed block file); no matched comparison is claimed. The screenshot was taken after opening the PDF workbench; that viewing action does not change how the task ran.

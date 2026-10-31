@@ -1,91 +1,137 @@
 {
-  "pdf": "Hafemeister_Satija_2019_sctransform.pdf",
-  "pages": 15,
-  "scope": "Lexical replay on pdftotext output of this PDF only. The App searched its own parsed block file, which is not available; earlier collapsed App search steps did not show their patterns.",
+ "pdf": "Hafemeister_Satija_2019_sctransform.pdf",
+ "pages": 15,
+ "scope": "Lexical replay on pdftotext output of this PDF only. Round 1: the App searched its own parsed block file, which is not available; earlier collapsed App search steps did not show their patterns. T1-R: the App ran pdftotext with layout itself; our Poppler version may differ from the App's.",
+ "round1": {
   "app_visible_pattern": "Smart|TPM|transcripts|biops|patient|Donor|donor|full-length|full length",
   "app_reported_match_count": 1,
   "replayed_case_sensitive_matches": [
-    {
-      "page": 14,
-      "match": "Donor",
-      "context": " dataset used in the main text is “33k PBMCs from a Healthy Donor, v1 Chemistry” from 10x Genomics (licensed under the Creati"
-    }
+   {"page": 14, "match": "Donor", "context": " dataset used in the main text is “33k PBMCs from a Healthy Donor, v1 Chemistry” from 10x Genomics (licensed under the Creati"}
   ],
   "absence_claim_audit": [
-    {
-      "id": "A1",
-      "answer_wording": "The words \"Smart-seq2\" and \"TPM\" never appear anywhere in the paper.",
-      "terms": [
-        {
-          "term": "Smart-seq",
-          "in_app_visible_pattern": true,
-          "pdf_pages_with_match": [],
-          "first_context": null
-        },
-        {
-          "term": "TPM",
-          "in_app_visible_pattern": true,
-          "pdf_pages_with_match": [],
-          "first_context": null
-        }
-      ]
-    },
-    {
-      "id": "A2",
-      "answer_wording": "Nothing about biopsies, patients, or replicate design - those terms do not occur.",
-      "terms": [
-        {
-          "term": "biops",
-          "in_app_visible_pattern": true,
-          "pdf_pages_with_match": [],
-          "first_context": null
-        },
-        {
-          "term": "patient",
-          "in_app_visible_pattern": true,
-          "pdf_pages_with_match": [],
-          "first_context": null
-        },
-        {
-          "term": "replicat",
-          "in_app_visible_pattern": false,
-          "pdf_pages_with_match": [
-            5
-          ],
-          "first_context": "t,” where the data from each droplet represents a technical replicate of a bulk RNA sample. There is no biological variation in "
-        }
-      ]
-    },
-    {
-      "id": "A3",
-      "answer_wording": "The only reference to non-UMI data is about a different tool, not sctransform: SCnorm (p. 3).",
-      "terms": [
-        {
-          "term": "non-UMI",
-          "in_app_visible_pattern": false,
-          "pdf_pages_with_match": [
-            3
-          ],
-          "first_context": "orm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data. Their method utilizes quant"
-        },
-        {
-          "term": "read-level",
-          "in_app_visible_pattern": false,
-          "pdf_pages_with_match": [
-            2
-          ],
-          "first_context": "stic approaches. For example, initial strategies focused on read-level (instead of UMI-level) data and modeled the measurement of "
-        },
-        {
-          "term": "read count",
-          "in_app_visible_pattern": false,
-          "pdf_pages_with_match": [
-            11,
-            15
-          ],
-          "first_context": "ple, DESeq [23] uses the negative binomial distribution for read count data and links variance and mean by local regression. DESeq"
-        }
-      ]
-    }
+   {
+    "id": "A1",
+    "answer_wording": "The words \"Smart-seq2\" and \"TPM\" never appear anywhere in the paper.",
+    "terms": [
+     {"term": "Smart-seq", "in_app_visible_pattern": true, "pdf_pages_with_match": [], "first_context": null},
+     {"term": "TPM", "in_app_visible_pattern": true, "pdf_pages_with_match": [], "first_context": null}
+    ]
+   },
+   {
+    "id": "A2",
+    "answer_wording": "Nothing about biopsies, patients, or replicate design - those terms do not occur.",
+    "terms": [
+     {"term": "biops", "in_app_visible_pattern": true, "pdf_pages_with_match": [], "first_context": null},
+     {"term": "patient", "in_app_visible_pattern": true, "pdf_pages_with_match": [], "first_context": null},
+     {"term": "replicat", "in_app_visible_pattern": false, "pdf_pages_with_match": [5], "first_context": "t,” where the data from each droplet represents a technical replicate of a bulk RNA sample. There is no biological variation in "}
+    ]
+   },
+   {
+    "id": "A3",
+    "answer_wording": "The only reference to non-UMI data is about a different tool, not sctransform: SCnorm (p. 3).",
+    "terms": [
+     {"term": "non-UMI", "in_app_visible_pattern": false, "pdf_pages_with_match": [3], "first_context": "orm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data. Their method utilizes quant"},
+     {"term": "read-level", "in_app_visible_pattern": false, "pdf_pages_with_match": [2], "first_context": "stic approaches. For example, initial strategies focused on read-level (instead of UMI-level) data and modeled the measurement of "},
+     {"term": "read count", "in_app_visible_pattern": false, "pdf_pages_with_match": [11, 15], "first_context": "ple, DESeq [23] uses the negative binomial distribution for read count data and links variance and mean by local regression. DESeq"}
+    ]
+   },
+   {
+    "id": "A5",
+    "answer_wording": "there is no empirical demonstration for full-length/non-UMI data",
+    "terms": [
+     {"term": "full-length", "in_app_visible_pattern": true, "pdf_pages_with_match": [], "first_context": null},
+     {"term": "Smart-seq", "in_app_visible_pattern": true, "pdf_pages_with_match": [], "first_context": null},
+     {"term": "TPM", "in_app_visible_pattern": true, "pdf_pages_with_match": [], "first_context": null}
+    ]
+   }
   ]
+ },
+ "t1r": {
+  "app_count_equals_matching_lines": 20,
+  "app_count_equals_matches": 14,
+  "searches_replayed": 20,
+  "search_count_replay": [
+   {"node": 49, "pattern": "(?i)sctransform", "app_count": 19, "matching_lines": 19, "matches": 19, "pages": [1, 2, 10, 11, 12, 13, 14, 15]},
+   {"node": 50, "pattern": "(?i)smart[-]?seq|smartseq", "app_count": 0, "matching_lines": 0, "matches": 0, "pages": []},
+   {"node": 51, "pattern": "(?i)TPM|transcripts? per million", "app_count": 0, "matching_lines": 0, "matches": 0, "pages": []},
+   {"node": 52, "pattern": "(?i)UMI", "app_count": 55, "matching_lines": 55, "matches": 56, "pages": [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14]},
+   {"node": 53, "pattern": "(?i)10x|Chromium|droplet|inDrop|Drop-seq", "app_count": 14, "matching_lines": 14, "matches": 14, "pages": [2, 3, 4, 5, 6, 8, 10, 12, 14]},
+   {"node": 54, "pattern": "(?i)biops", "app_count": 0, "matching_lines": 0, "matches": 0, "pages": []},
+   {"node": 55, "pattern": "(?i)patient", "app_count": 0, "matching_lines": 0, "matches": 0, "pages": []},
+   {"node": 56, "pattern": "(?i)Pearson", "app_count": 38, "matching_lines": 38, "matches": 40, "pages": [1, 5, 6, 7, 8, 9, 10, 11, 12, 13]},
+   {"node": 57, "pattern": "(?i)residual", "app_count": 64, "matching_lines": 64, "matches": 67, "pages": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]},
+   {"node": 58, "pattern": "(?i)variance[- ]stabili|stabili[sz]ed|variance[- ]stabilizing|VST", "app_count": 8, "matching_lines": 8, "matches": 9, "pages": [1, 5, 6, 10]},
+   {"node": 60, "pattern": "(?i)tumou?r", "app_count": 0, "matching_lines": 0, "matches": 0, "pages": []},
+   {"node": 61, "pattern": "(?i)cancer|malignant|melanoma|carcinom|glioblastom", "app_count": 0, "matching_lines": 0, "matches": 0, "pages": []},
+   {"node": 62, "pattern": "(?i)tissue", "app_count": 2, "matching_lines": 2, "matches": 2, "pages": [2, 14]},
+   {"node": 63, "pattern": "(?i)donor|individual|subject|participant|replicat", "app_count": 7, "matching_lines": 7, "matches": 7, "pages": [2, 3, 4, 5, 9, 14]},
+   {"node": 64, "pattern": "(?i)full[- ]?length|plate[- ]?based|plate[- ]?based protocol|non[- ]?UMI|read[- ]?level|read count|CPM|counts? per million|relative counts", "app_count": 5, "matching_lines": 5, "matches": 5, "pages": [2, 3, 11, 15]},
+   {"node": 65, "pattern": "(?i)normaliz", "app_count": 69, "matching_lines": 69, "matches": 74, "pages": [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14]},
+   {"node": 66, "pattern": "(?i)comparable|comparability|across gene|across-genes|between gene|between-genes|across the transcriptome", "app_count": 9, "matching_lines": 9, "matches": 9, "pages": [1, 2, 3, 4, 5, 10, 11]},
+   {"node": 67, "pattern": "(?i)homoscedastic|homoskedastic|constant variance|equal variance|independent of gene abundance|independent of abundance|mean-variance", "app_count": 5, "matching_lines": 5, "matches": 5, "pages": [1, 7, 15]},
+   {"node": 68, "pattern": "(?i)expression level|expression levels|normalized expression", "app_count": 5, "matching_lines": 5, "matches": 5, "pages": [1, 2, 5]},
+   {"node": 69, "pattern": "(?i)sample|biological replicate|technical replicate", "app_count": 10, "matching_lines": 10, "matches": 11, "pages": [5, 9, 10, 11, 12]}
+  ],
+  "absence_claim_audit": [
+   {
+    "id": "B1",
+    "node": "51, 54, 91",
+    "answer_wording": "The paper never mentions Smart-seq2 or TPM (search terms above: no hits)",
+    "terms": [
+     {"term": "smart[- ]?seq", "pdf_pages_with_match": [], "first_context": null},
+     {"term": "TPM", "pdf_pages_with_match": [], "first_context": null},
+     {"term": "transcripts? per million", "pdf_pages_with_match": [], "first_context": null}
+    ]
+   },
+   {
+    "id": "B2",
+    "node": "97, 100",
+    "answer_wording": "Nothing about biopsies, patients, or tumours ... the tumour/biopsy/patient concepts never appear",
+    "terms": [
+     {"term": "biops", "pdf_pages_with_match": [], "first_context": null},
+     {"term": "patient", "pdf_pages_with_match": [], "first_context": null},
+     {"term": "tumou?r", "pdf_pages_with_match": [], "first_context": null},
+     {"term": "cancer|malignan|melanoma|carcinom|glioblastom", "pdf_pages_with_match": [], "first_context": null}
+    ]
+   },
+   {
+    "id": "B3",
+    "node": "57",
+    "answer_wording": "hits on pages 2, 3, 11, 15 (5 hits; these are the only non-UMI / read-level / plate-based mentions)",
+    "terms": [
+     {"term": "plate[- ]?based", "pdf_pages_with_match": [], "first_context": null},
+     {"term": "plate", "pdf_pages_with_match": [2, 8], "first_context": "five UMI datasets from diverse tissues, generated with both plate- and droplet-based protocols. We show results on all datase"},
+     {"term": "non[- ]?UMI", "pdf_pages_with_match": [3], "first_context": "orm [6] reached similar conclusions in the normalization of non-UMI-based single-cell RNA-seq data. Their method utilizes quant"},
+     {"term": "read[- ]?level", "pdf_pages_with_match": [2], "first_context": "stic approaches. For example, initial strategies focused on read-level (instead of UMI-level) data and modeled the measurement of "},
+     {"term": "read count", "pdf_pages_with_match": [11, 15], "first_context": "ple, DESeq [23] uses the negative binomial distribution for read count data and links variance and mean by local regression. DESeq"}
+    ]
+   },
+   {
+    "id": "B4",
+    "node": "113",
+    "answer_wording": "the paper never uses the word \"comparable\" (search above: no literal hit)",
+    "terms": [
+     {"term": "comparab", "pdf_pages_with_match": [], "first_context": null}
+    ]
+   },
+   {
+    "id": "B5",
+    "node": "92",
+    "answer_wording": "The paper never evaluates sctransform on TPM, read counts, or full-length/non-UMI input",
+    "terms": [
+     {"term": "full[- ]?length", "pdf_pages_with_match": [], "first_context": null},
+     {"term": "Smart[- ]?seq", "pdf_pages_with_match": [], "first_context": null},
+     {"term": "TPM", "pdf_pages_with_match": [], "first_context": null}
+    ]
+   },
+   {
+    "id": "B6",
+    "node": "78",
+    "answer_wording": "9 hits; all are \"across genes\"/\"between genes\" in the sense of pooling information",
+    "terms": [
+     {"term": "across gene|between gene", "pdf_pages_with_match": [1, 2, 3, 4, 5, 10, 11], "first_context": "it scRNA-seq data, and overcome this by pooling information across genes with similar abundances to obtain stable parameter estimat", "all_contexts": ["p. 1: it scRNA-seq data, and overcome this by pooling information across genes with similar abundances to obtain stable parameter estimat", "p. 2: iance. To address this, we find that by pooling information across genes Page 2 of 15 with similar abundances, we can regularize pa", "p. 3: so that a single Y-axis range could be used. e Relationship between gene variance and cell sequencing depth; cells were placed into ", "p. 3: Removing the log-transformation mitigated the relationships between gene expression, gene variance, and sequencing depth, but residu", "p. 4: xpected that we would obtain consistent parameter estimates across genes, as sequencing depth should have similar (but not identica", "p. 5: e binomial regression still exhibited substantial variation across genes, particularly for lowly abundant genes (Additional file 2:", "p. 10: -seq analysis [22, 28] where parameter estimates are pooled across genes with similar mean abundance, can effectively overcome this", "p. 11: uding the NB dispersion parameter θ, by sharing information across genes. The procedure we developed has three steps. In the first ", "p. 11:  genes Our regularization approach aims to pool information across genes with similar average expression. To avoid the influence of"]}
+    ]
+   }
+  ]
+ }
 }
