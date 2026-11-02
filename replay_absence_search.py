@@ -2,7 +2,7 @@
 """Replay the App's visible searches and audit absence/uniqueness claims, before and after T1-R.
 
 Part 1 (round 1, original reader session): replays the one visible search pattern and audits
-the four scriptable absence/uniqueness claims of app-answer.md (A4 is judged by reading).
+the four scriptable absence/uniqueness claims of the round-1 answer (A4 is judged by reading).
 Part 2 (T1-R probe): replays every search pattern shown in t1r-test/search-observations-excerpt.jsonl
 on `pdftotext -layout` text (the App's T1-R route extracted text "with layout"), compares the
 App's "共 N 处" count with matching lines and with matches, and audits the T1-R answer's claims.
@@ -21,8 +21,8 @@ import subprocess
 # Verbatim from AX node 29 of app-inprogress-ax.txt (the App's visible search step).
 APP_VISIBLE_PATTERN = r"Smart|TPM|transcripts|biops|patient|Donor|donor|full-length|full length"
 
-# Round 1: absence/uniqueness claims in app-answer.md, the terms they assert about, and the
-# visible-pattern alternative covering each term (None = not in the visible pattern).
+# Round 1: absence/uniqueness claims in the round-1 answer (app-followup-complete-ax.txt nodes 23-58), the
+# terms they assert about, and the visible-pattern alternative covering each term (None = not in the pattern).
 CLAIMS = [
     {"id": "A1",
      "answer_wording": "The words \"Smart-seq2\" and \"TPM\" never appear anywhere in the paper.",

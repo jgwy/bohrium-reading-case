@@ -53,18 +53,13 @@ list the exact search terms and synonyms you searched, and report the pages of e
 If a term was not searched, do not make the absence claim.
 ```
 
-Why: in round 1 the visible App search did not contain "replicat", yet the answer claimed replicate design
-does not occur (p. 5 contradicts it); the uniqueness claim about non-UMI data was true for the token "non-UMI"
-and false for its synonyms. The rule targets both mechanisms.
+Why: round 1 claimed replicate design does not occur although its visible search lacked "replicat" (p. 5
+contradicts it), and its non-UMI uniqueness claim held for the token, not its synonyms.
 
-Observed once (README section 6, "Repair and prevention"): every lexical absence claim named its pattern, the
-replicate-absence statement did not recur, and the read-level and read-count wording was reached at page level.
-Contradicted claims did not fall (round 1: 2 of 5 plus 1 arguable; T1-R: 2 of 6), but both remaining errors are
-"only/all" summaries: the hits of `plate[- ]?based|…` were called "the only … plate-based mentions", although
-pp. 2 and 8 say "plate- and droplet-based", and nine "across/between gene" hits were all called pooling-related,
-which pp. 3 and 5 contradict.
-The probe used a PDF attachment and pdftotext rather than the reader's parsed blocks, once: not a matched or
-causal comparison. Some final AX nodes are clipped (t1r-test/PROVENANCE.json).
+Observed once (README section 6, "Repair and prevention"): every lexical absence claim named its pattern and the
+replicate-absence statement did not recur, but contradicted claims did not fall (2 of 6 against 2 of 5 plus 1
+arguable): both remaining errors are "only/all" summaries (B3, B6). One run in a different App route: not a
+matched or causal comparison.
 
 ### T1-R2 — T1-R plus stems and bounded wording (untested)
 
@@ -91,7 +86,8 @@ Test protocol, written before any run (Route B, so it is matched to the T1-R pro
 6. Report as measured, whatever the direction: contradicted claims (T1-R: 2 of 6), page lists that disagree with
    the replayed pages (T1-R: 2), quotes on page (T1-R: 10/11). One run is one data point.
 
-Filled T1-R input (not T1-R2): t1r-test/sent-prompt-single-line.txt. It is prompt.txt plus the two T1-R sentences, with whitespace normalized only. The complete pre-send field was captured. An earlier multiline-entry event has unverified rule delivery and is excluded (t1r-test/INTERFACE_EVENT.md).
+Filled T1-R input: t1r-test/sent-prompt-single-line.txt (prompt.txt plus the two T1-R sentences, whitespace
+normalized only; the pre-send field was captured).
 
 ### T2 — page-specific scope follow-up (used once, as followup-prompt.txt)
 
@@ -107,27 +103,13 @@ Observed effect: the App quoted both earlier sentences, revised both, added a th
 (p. 11 DESeq) that the feedback had not named, and kept the three conclusions. All four new quotes matched
 their pages. This is assisted revision: the counter-evidence came from step 5.
 
-## Adapting the scripts to another paper (no code edits)
+## Scripts and limits
 
-- `reproduce_quote_pages.py --pdf your.pdf --spans your-spans.json`: the spans file has the format of
-  `quote-page-check.json` (`spans`: `ax_node` = any locator, `quote`, `claimed_pdf_page`).
-- `replay_absence_search.py --pdf your.pdf --claims your-claims.json`: a JSON list of
-  `{"id", "answer_wording", "terms": [case-insensitive regexes], "all_contexts": true|absent}`, as in
-  `claims-example.json` (its output: `claims-example-output.json`). Output field `claims_with_hits` lists the
-  claims to read.
-- Add `--searches your-search-lines.jsonl` to replay a Route B panel: one JSON object per line,
-  `{"new_scientific_ui_nodes": [{"node": N, "visible": "搜索内容 PATTERN，共 N 处"}]}` as in
-  `t1r-test/search-observations-excerpt.jsonl`; each count is compared with matching lines and matches in
-  `pdftotext -layout` text.
-- Without options both scripts reproduce this case. Both need Poppler `pdftotext` and Python 3.10+; neither
-  calls a model or the network.
+The scripts take your own PDF, quotes and claims as data files (`--pdf`, `--spans`, `--claims`, `--searches`);
+commands, file formats and expected values are in README section 7, "Reproduce this case, then apply it to your
+paper". Both need Poppler `pdftotext` and Python 3.10+; neither calls a model or the network.
 
-## Where it works and where it does not
-
-- Works for claims stated in the extractable main text of the supplied PDF.
-- Does not check figures, equations or tables as images; text extraction joins or drops glyphs there.
-- Says nothing about supplements, cited papers or later versions that were not supplied.
-- A synonym list is only as good as the reader who writes it: step 5 cannot find a concept that is
-  expressed without any of the listed words. That is the same failure mode it is meant to catch in the App.
-- One paper, one original revision and one later development probe: no claim that the App, or this workflow, behaves the same way on
-  other papers. T1-R2 has not been run.
+The workflow checks claims in the extractable main text of the supplied PDF, not figures, equations or tables as
+images, supplements or cited papers. Step 5 cannot find a concept expressed without any listed word or stem, the
+same failure it is meant to catch in the App. One paper and one case: no claim that the App or this workflow
+behaves the same way on other papers.

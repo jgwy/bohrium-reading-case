@@ -1,8 +1,0 @@
-{
-  "source": "Unmodified text from the current task computer-use tool response",
-  "captured_at_utc": "2026-10-29T18:28:04.716Z",
-  "app": "com.bohrium.scix",
-  "format": "accessibility text export, not native agent telemetry",
-  "scope": "Only the reading-session tool output was extracted; no parent conversation was copied.",
-  "v1.3_note": "The round-1 export this record describes duplicated the round-1 text of app-followup-complete-ax.txt and was removed in v1.3; capture time retained."
-}

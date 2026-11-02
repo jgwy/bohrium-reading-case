@@ -9,6 +9,6 @@ The only full original in this directory is materials/Hafemeister_Satija_2019_sc
 
 The paper's first page states © The Author(s) 2019 and Creative Commons Attribution 4.0 permission: https://creativecommons.org/licenses/by/4.0/. Retain author/source attribution and identify adaptations.
 
-The App quotes and discusses this paper. Independent checks extracted text from the PDF, joined line-end hyphens and normalized whitespace/Unicode for quote matching. The visible App exports were rendered into Markdown by removing accessibility UI wrappers and duplicate labels and joining mathematical glyphs; wording and errors were retained. Those derivatives are identified in their headers and capture-provenance records.
+The App quotes and discusses this paper. Independent checks extracted text from the PDF, joined line-end hyphens and normalized whitespace/Unicode for quote matching. The App's answers are shipped as unedited accessibility exports (README sections 4 and 6 give the node ranges).
 
 Actual screenshots are unchanged product observations. They do not grant ownership of the product's interface. The new workflow, text, check records and code in this repository are licensed under CC BY-NC-ND 4.0 (see LICENSE). That license does not apply to the paper PDF, which keeps its CC BY 4.0 terms.

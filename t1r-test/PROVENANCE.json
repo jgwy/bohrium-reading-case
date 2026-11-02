@@ -17,5 +17,5 @@
   "model_version_tokens_cost": "Unavailable from the captured view.",
   "screenshot": "workspace-result.jpg is an unchanged screenshot captured after completion in the PDF workbench; no account sidebar or local path is visible.",
   "interpretation": "Observed search terms and result pages, plus visible final wording. No stable, causal or general-performance claim.",
-  "v1.3_additions": "Input-bar control nodes 35-37 and 39-41 (before-send) and 119-127 (final) were copied verbatim from the original exports so that the run-location, approval, reasoning and context-meter readings cited in README are checkable. No account content is in those nodes."
+  "v1.3_additions": "Input-bar control nodes 35-37 and 39-41 (before-send) and 119-127 (final) were copied verbatim from the original exports so that the run-location, approval, reasoning and context-meter readings cited in README/DETAILS.md are checkable. No account content is in those nodes."
 }
